@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Time Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        input:focus {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result-container {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-container.show {
+            display: block;
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85em;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-value {
+            color: white;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .error-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid rgba(239, 68, 68, 0.5);
+            border-radius: 12px;
+            color: white;
+            display: none;
+            animation: shake 0.5s ease-out;
+            text-align: center;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .error-container.show {
+            display: block;
+        }
+
+        .error-gif {
+            width: 150px;
+            height: 150px;
+            margin: 15px auto;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-message {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .error-tech-joke {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .helper-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⏱️ Work Time Calculator</h1>
+        <p class="subtitle">Calculate your expected completion time</p>
+        
+        <form id="calculatorForm">
+            <div class="form-group">
+                <label for="workedTime">Worked Time</label>
+                <input type="text" id="workedTime" placeholder="e.g., 5:59 or 5:30" required>
+                <div class="helper-text">Format: HH:MM or H:MM</div>
+            </div>
+
+            <div class="form-group">
+                <label for="breakMinutes">Break Minutes</label>
+                <input type="number" id="breakMinutes" placeholder="e.g., 10" min="0" max="480" required>
+                <div class="helper-text">Between 0 and 480 minutes (8 hours)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="fullDayHours">Full Day Hours (Optional)</label>
+                <input type="text" id="fullDayHours" placeholder="e.g., 8 or 7.5 (default: 8)">
+                <div class="helper-text">Between 1 and 8 hours, can be fractional (e.g., 7.5)</div>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">Calculate</button>
+        </form>
+
+        <div class="error-container" id="errorContainer"></div>
+
+        <div class="result-container" id="resultContainer">
+            <div class="result-item">
+                <div class="result-label">Current Time</div>
+                <div class="result-value" id="currentTime">--</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Expected Completion</div>
+                <div class="result-value" id="completionTime">--</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Planned Break</div>
+                <div class="result-value" id="breakTime">--</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Remaining Work Time</div>
+                <div class="result-value" id="remainingTime">--</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('calculatorForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const resultContainer = document.getElementById('resultContainer');
+        const errorContainer = document.getElementById('errorContainer');
+
+        const funnyErrors = [
+            {
+                message: "Houston, we have a problem! 🚀",
+                joke: "Your input just caused a buffer overflow in my brain.",
+                gif: "https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif"
+            },
+            {
+                message: "404: Valid Input Not Found 🔍",
+                joke: "Even Stack Overflow can't help you with that input!",
+                gif: "https://media.giphy.com/media/VwoJkTfZAUBSU/giphy.gif"
+            },
+            {
+                message: "Segmentation Fault (core dumped) 💥",
+                joke: "You just tried to access memory that doesn't exist!",
+                gif: "https://media.giphy.com/media/3o7TKUM3IgJBX2as9O/giphy.gif"
+            },
+            {
+                message: "ERROR 418: I'm a teapot ☕",
+                joke: "This endpoint refuses to brew coffee... or accept that input!",
+                gif: "https://media.giphy.com/media/L0O3TQpp0dtli/giphy.gif"
+            },
+            {
+                message: "Warning: Undefined Behavior Detected ⚠️",
+                joke: "Your compiler would be crying right now.",
+                gif: "https://media.giphy.com/media/xTiN0CNHgoRf1Ha7CM/giphy.gif"
+            },
+            {
+                message: "Blue Screen of Input 🖥️",
+                joke: "Windows is restarting... just kidding, fix your input!",
+                gif: "https://media.giphy.com/media/3o7btW7bolkUVh33sA/giphy.gif"
+            }
+        ];
+
+        function showError(message, isApiError = false) {
+            const randomError = funnyErrors[Math.floor(Math.random() * funnyErrors.length)];
+            
+            errorContainer.innerHTML = `
+                <img src="${randomError.gif}" alt="Error GIF" class="error-gif" onerror="this.style.display='none'">
+                <div class="error-message">${randomError.message}</div>
+                <div class="error-message">${message}</div>
+                <div class="error-tech-joke">${randomError.joke}</div>
+            `;
+            errorContainer.classList.add('show');
+            resultContainer.classList.remove('show');
+        }
+
+        function hideError() {
+            errorContainer.classList.remove('show');
+        }
+
+        function showResults(data) {
+            document.getElementById('currentTime').textContent = data.current_time;
+            document.getElementById('completionTime').textContent = data.expected_completion_time;
+            document.getElementById('breakTime').textContent = data.planned_break_time;
+            document.getElementById('remainingTime').textContent = data.remaining_work_time;
+            
+            resultContainer.classList.add('show');
+            errorContainer.classList.remove('show');
+        }
+
+        function validateTimeFormat(time) {
+            const timeRegex = /^\d{1,2}:\d{2}$/;
+            return timeRegex.test(time);
+        }
+
+        function validateFullDayHours(hours) {
+            if (!hours) return true; // Optional field
+            
+            // Check if it's a valid number (including decimals)
+            const num = parseFloat(hours);
+            if (isNaN(num)) {
+                return false;
+            }
+            
+            // Check range
+            if (num < 1 || num > 8) {
+                return false;
+            }
+            
+            return true;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError();
+
+            const workedTime = document.getElementById('workedTime').value.trim();
+            const breakMinutes = document.getElementById('breakMinutes').value.trim();
+            let fullDayHours = document.getElementById('fullDayHours').value.trim();
+
+            // Set default value if empty
+            if (!fullDayHours) {
+                fullDayHours = '8';
+            }
+
+            // Validate inputs
+            if (!workedTime || !breakMinutes) {
+                showError('All required fields must be filled! 📝');
+                return;
+            }
+
+            if (!validateTimeFormat(workedTime)) {
+                showError('Worked time must be in HH:MM format (e.g., 5:59) ⏰');
+                return;
+            }
+
+            if (!validateFullDayHours(fullDayHours)) {
+                showError('Full day hours must be between 1 and 8 hours! 🕐');
+                return;
+            }
+
+            const breakMins = parseInt(breakMinutes);
+            if (isNaN(breakMins) || breakMins < 0 || breakMins > 480) {
+                showError('Break minutes must be between 0 and 480 (8 hours) ☕');
+                return;
+            }
+
+            // Show loading state
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = '<span class="loading"></span>Calculating...';
+            submitBtn.disabled = true;
+
+            try {
+                const url = `https://basiljose.pythonanywhere.com/calculate?worked_time=${encodeURIComponent(workedTime)}&break_minutes=${encodeURIComponent(breakMinutes)}&full_day_hours=${encodeURIComponent(fullDayHours)}`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.error) {
+                    showError(data.error, true);
+                } else {
+                    showResults(data);
+                }
+            } catch (error) {
+                showError('Failed to connect to the server. Check your internet! 🌐');
+                console.error('Error:', error);
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Auto-format time input for worked time
+        document.getElementById('workedTime').addEventListener('blur', function() {
+            let value = this.value.trim();
+            if (value && !value.includes(':')) {
+                this.value = value + ':00';
+            }
+        });
+    </script>
+</body>
+</html>
