@@ -254,6 +254,37 @@
             font-weight: 900;
             letter-spacing: 3px;
             animation: shimmer 3s ease-in-out infinite;
+            word-break: break-word;
+        }
+
+        @media (max-width: 768px) {
+            .result-item.highlight .result-value {
+                font-size: 2em;
+                letter-spacing: 1px;
+            }
+            
+            .result-item.highlight {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .result-item.highlight .result-value {
+                font-size: 1.6em;
+                letter-spacing: 0px;
+            }
+            
+            .result-item.highlight .result-label {
+                font-size: 0.9em;
+            }
         }
 
         @keyframes shimmer {
