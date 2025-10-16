@@ -202,6 +202,28 @@
             border-bottom: none;
         }
 
+        .result-item.highlight {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 165, 0, 0.3) 100%);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 16px;
+            border: 3px solid rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: pulseGlow 2s ease-in-out infinite;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 8px 20px rgba(0, 0, 0, 0.3);
+                border-color: rgba(255, 215, 0, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.8), 0 12px 30px rgba(0, 0, 0, 0.4);
+                border-color: rgba(255, 215, 0, 1);
+            }
+        }
+
         .result-label {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.85em;
@@ -210,11 +232,41 @@
             letter-spacing: 0.5px;
         }
 
+        .result-item.highlight .result-label {
+            color: rgba(255, 255, 255, 1);
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
         .result-value {
             color: white;
             font-size: 1.3em;
             font-weight: 700;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-item.highlight .result-value {
+            font-size: 3em;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 3px 3px 6px rgba(0, 0, 0, 0.4);
+            font-weight: 900;
+            letter-spacing: 3px;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 3px 3px 6px rgba(0, 0, 0, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 165, 0, 0.8), 3px 3px 6px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        .result-item.hidden {
+            display: none;
         }
 
         .error-container {
@@ -309,7 +361,7 @@
                 <div class="helper-text">Between 1 and 8 hours, can be fractional (e.g., 7.5)</div>
             </div>
 
-            <button type="submit" class="btn" id="submitBtn">Calculate</button>
+            <button type="submit" class="btn" id="submitBtn" disabled>Calculate</button>
         </form>
 
         <div class="error-container" id="errorContainer"></div>
@@ -317,12 +369,8 @@
         <div class="success-container" id="successContainer"></div>
 
         <div class="result-container" id="resultContainer">
-            <div class="result-item">
-                <div class="result-label">Current Time</div>
-                <div class="result-value" id="currentTime">--</div>
-            </div>
-            <div class="result-item">
-                <div class="result-label">Expected Completion</div>
+            <div class="result-item highlight" id="completionTimeItem">
+                <div class="result-label">🎯 FINISH TIME</div>
                 <div class="result-value" id="completionTime">--</div>
             </div>
             <div class="result-item">
@@ -434,8 +482,15 @@
         }
 
         function showResults(data) {
-            document.getElementById('currentTime').textContent = data.current_time;
-            document.getElementById('completionTime').textContent = data.expected_completion_time;
+            // Extract only the time from expected_completion_time (remove date)
+            let completionTime = data.expected_completion_time;
+            if (completionTime && completionTime.includes(' ')) {
+                // Format: "2025-10-15 07:31:44 PM" -> "07:31:44 PM"
+                const parts = completionTime.split(' ');
+                completionTime = parts.slice(1).join(' '); // Get time and AM/PM
+            }
+            
+            document.getElementById('completionTime').textContent = completionTime;
             document.getElementById('breakTime').textContent = data.planned_break_time;
             document.getElementById('remainingTime').textContent = data.remaining_work_time;
             
@@ -465,6 +520,25 @@
             
             return true;
         }
+
+        function checkFormValidity() {
+            const workedTime = document.getElementById('workedTime').value.trim();
+            const breakMinutes = document.getElementById('breakMinutes').value.trim();
+            const fullDayHours = document.getElementById('fullDayHours').value.trim();
+            
+            // All fields must have values (even if some have defaults)
+            const allFieldsFilled = workedTime && breakMinutes && fullDayHours;
+            
+            submitBtn.disabled = !allFieldsFilled;
+        }
+
+        // Add input listeners to enable/disable button
+        document.getElementById('workedTime').addEventListener('input', checkFormValidity);
+        document.getElementById('breakMinutes').addEventListener('input', checkFormValidity);
+        document.getElementById('fullDayHours').addEventListener('input', checkFormValidity);
+
+        // Initial check on page load
+        checkFormValidity();
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
