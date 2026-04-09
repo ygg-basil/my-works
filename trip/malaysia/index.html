@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KL Trip 2026 — Complete Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080810;--bg2:#0E0E1A;--bg3:#141422;--bg4:#1A1A2C;--bg5:#202036;
+  --border:rgba(255,255,255,0.07);
+  --gold:#D4A840;--gold2:#F0CC70;--goldlow:rgba(212,168,64,0.1);
+  --text:#EDE8DC;--muted:#706880;--dim:#4A4460;
+  --teal:#38C9B8;--coral:#E85550;--sage:#5CB88A;--sky:#4A9EE8;
+  --lav:#9878D8;--orange:#E8904A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,#080810 0%,#10100A 45%,#080810 100%);padding:40px 20px 32px;text-align:center;border-bottom:1px solid rgba(212,168,64,0.2);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(212,168,64,0.09) 0%,transparent 70%)}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,64,0.5),transparent)}
+.hero-flag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.hero-title{font-family:'Fraunces',serif;font-size:clamp(28px,7vw,54px);font-weight:900;color:#fff;line-height:1;letter-spacing:-1px;position:relative}
+.hero-title em{color:var(--gold);font-style:normal}
+.hero-sub{color:var(--muted);font-size:13px;margin-top:8px;letter-spacing:.5px}
+.hero-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero-chip{background:rgba(212,168,64,0.08);border:1px solid rgba(212,168,64,0.25);border-radius:20px;padding:5px 13px;font-size:11px;color:var(--gold2);font-family:'JetBrains Mono',monospace}
+
+/* ── MAIN NAV ── */
+.main-nav{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:500;padding:0 8px}
+.main-nav::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:13px 15px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;letter-spacing:.3px;color:var(--muted);background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s}
+.nav-btn:hover{color:var(--text)}
+.nav-btn.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── LEGEND ── */
+.legend-bar{display:flex;gap:12px;flex-wrap:wrap;padding:10px 16px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.leg{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+
+/* ── PAGES ── */
+.page{display:none;max-width:780px;margin:0 auto;padding:18px 14px 80px}
+.page.on{display:block;animation:up .25s ease}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── DAY TABS ── */
+.day-tabs{display:flex;overflow-x:auto;scrollbar-width:none;gap:6px;padding:14px 0 4px;margin-bottom:14px}
+.day-tabs::-webkit-scrollbar{display:none}
+.day-tab{flex-shrink:0;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;background:var(--bg3);border:1px solid var(--border);color:var(--muted);transition:all .2s}
+.day-tab.on{background:var(--goldlow);border-color:rgba(212,168,64,.4);color:var(--gold2)}
+.day-panel{display:none}
+.day-panel.on{display:block;animation:up .2s ease}
+
+/* ── SECTION ── */
+.sec-eye{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.sec-ttl{font-family:'Fraunces',serif;font-size:21px;font-weight:700;color:#fff;margin-bottom:14px}
+
+/* ── DAY HEADER ── */
+.day-hdr{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.dhdr-title{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--gold2)}
+.dhdr-date{font-size:11px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono',monospace}
+.dhdr-theme{background:var(--goldlow);border:1px solid rgba(212,168,64,.2);border-radius:8px;padding:7px 12px;font-size:11px;color:var(--gold);font-family:'JetBrains Mono',monospace;text-align:right;line-height:1.6}
+
+/* ── SUMMARY BAR ── */
+.day-sum{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.si{flex:1;padding:11px 12px;border-right:1px solid var(--border)}
+.si:last-child{border-right:none}
+.si-lbl{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
+.si-val{font-size:13px;font-weight:600;color:var(--text)}
+
+/* ── STOP CARD ── */
+.stop{background:var(--bg3);border:1px solid var(--border);border-radius:14px;margin-bottom:5px;overflow:hidden;transition:border-color .2s}
+.stop:hover{border-color:rgba(212,168,64,.18)}
+.stop.skipped{opacity:.42;filter:grayscale(.6)}
+.stop.skipped .stop-inner{pointer-events:none}
+
+.stop-img{width:100%;height:100px;object-fit:cover;display:block}
+.stop-img-wrap{position:relative;overflow:hidden;height:100px}
+.stop-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.stop:hover .stop-img-wrap img{transform:scale(1.03)}
+.stop-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,8,16,.9) 100%)}
+.stop-img-label{position:absolute;bottom:8px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-end}
+.stop-number{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:rgba(255,255,255,.5)}
+.stop-cost-img{font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:5px}
+.sci-free{background:rgba(92,184,138,.25);color:#9FECCC}
+.sci-paid{background:rgba(232,144,74,.25);color:#F8C898}
+
+.stop-hdr{display:flex;gap:11px;align-items:center;padding:12px 14px;cursor:pointer}
+.stop-num-circle{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500}
+.stop-main{flex:1;min-width:0}
+.stop-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px}
+.stime{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);background:var(--bg4);padding:2px 6px;border-radius:4px}
+.tbadge{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600}
+.tb-gold{background:rgba(212,168,64,.12);color:var(--gold2);border:1px solid rgba(212,168,64,.25)}
+.tb-grn{background:rgba(92,184,138,.1);color:#7DDAA8;border:1px solid rgba(92,184,138,.25)}
+.tb-ngt{background:rgba(74,158,232,.1);color:#80C0F0;border:1px solid rgba(74,158,232,.25)}
+.tb-any{background:rgba(255,255,255,.04);color:var(--muted);border:1px solid var(--border)}
+.tb-sst{background:rgba(232,144,74,.1);color:#F0B888;border:1px solid rgba(232,144,74,.25)}
+.stop-name{font-size:14px;font-weight:600;color:var(--text)}
+.stop-tag{font-size:11px;color:var(--muted);margin-top:1px}
+
+.stop-actions{display:flex;gap:6px;padding:0 14px 11px;flex-wrap:wrap}
+.act-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;border:none;transition:all .15s;text-decoration:none}
+.btn-map{background:rgba(74,158,232,.12);color:#80C0F0;border:1px solid rgba(74,158,232,.25)}
+.btn-map:hover{background:rgba(74,158,232,.22)}
+.btn-skip{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)}
+.btn-skip:hover{background:rgba(232,85,80,.12);color:#F09090;border-color:rgba(232,85,80,.3)}
+.btn-unskip{background:rgba(92,184,138,.1);color:#7DDAA8;border:1px solid rgba(92,184,138,.25)}
+.btn-expand{background:rgba(212,168,64,.08);color:var(--gold2);border:1px solid rgba(212,168,64,.2)}
+.btn-expand:hover{background:rgba(212,168,64,.16)}
+
+.stop-body{display:none;padding:0 14px 14px 14px;border-top:1px solid var(--border)}
+.stop.open .stop-body{display:block}
+.sbi{padding-top:12px}
+
+/* ── SKIP NOTICE ── */
+.skip-notice{
+  background:rgba(232,85,80,.07);border:1px solid rgba(232,85,80,.2);
+  border-radius:10px;padding:10px 14px;font-size:12px;color:#F09090;
+  display:none;margin-bottom:4px;
+}
+.skip-notice.show{display:block}
+
+/* ── CONNECTOR ── */
+.connector{display:flex;align-items:center;gap:7px;padding:3px 14px 3px 58px;flex-wrap:wrap;margin-bottom:1px}
+.cmode{font-size:11px;font-family:'JetBrains Mono',monospace;padding:4px 10px;border-radius:20px;font-weight:500;white-space:nowrap}
+.cm-mrt{background:rgba(74,158,232,.1);color:#80C0F0;border:1px solid rgba(74,158,232,.2)}
+.cm-ktm{background:rgba(152,120,216,.1);color:#C0A8F0;border:1px solid rgba(152,120,216,.2)}
+.cm-grab{background:rgba(92,184,138,.1);color:#7DDAA8;border:1px solid rgba(92,184,138,.2)}
+.cm-walk{background:rgba(212,168,64,.1);color:var(--gold2);border:1px solid rgba(212,168,64,.2)}
+.cm-bus{background:rgba(232,144,74,.1);color:#F0B888;border:1px solid rgba(232,144,74,.2)}
+.cm-cable{background:rgba(152,120,216,.1);color:#C0A8F0;border:1px solid rgba(152,120,216,.2)}
+.cdist{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.ccost{font-size:10px;color:var(--gold);background:var(--goldlow);padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace}
+.connector.skipped-connector{opacity:.35}
+
+/* ── INFO GRID ── */
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:9px}
+@media(max-width:400px){.igrid{grid-template-columns:1fr}}
+.icell{background:var(--bg4);border-radius:7px;padding:8px 10px}
+.ilbl{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
+.ival{font-size:12px;color:var(--text);line-height:1.4}
+
+.tip{background:rgba(212,168,64,.05);border-left:3px solid var(--gold);padding:8px 10px;border-radius:0 7px 7px 0;font-size:12px;color:var(--muted);margin-top:7px;line-height:1.5}
+.tip b{color:var(--gold2)}
+.btbox{background:rgba(92,184,138,.05);border:1px solid rgba(92,184,138,.2);border-radius:7px;padding:9px 11px;margin-top:7px}
+.btlbl{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#7DDAA8;font-family:'JetBrains Mono',monospace;margin-bottom:2px}
+.bttxt{font-size:12px;color:var(--text);line-height:1.5}
+
+/* ── PLACE BRIEF ── */
+.place-brief{background:var(--bg4);border-radius:8px;padding:9px 11px;margin-bottom:9px;border:1px solid rgba(212,168,64,.1)}
+.pb-row{display:flex;gap:10px;align-items:flex-start}
+.pb-emo{font-size:22px;margin-top:1px}
+.pb-name{font-size:13px;font-weight:600;color:var(--gold2)}
+.pb-desc{font-size:12px;color:var(--muted);line-height:1.4;margin-top:2px}
+
+/* ── ALERTS ── */
+.alert{border-radius:11px;padding:11px 13px;margin-bottom:11px;display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.5}
+.ai-ico{font-size:15px;flex-shrink:0;margin-top:1px}
+.ai-body{flex:1}
+.ai-ttl{font-weight:600;margin-bottom:2px;font-size:13px}
+.aw{background:rgba(232,85,80,.09);border:1px solid rgba(232,85,80,.28);color:#F09090}
+.ai{background:rgba(56,201,184,.07);border:1px solid rgba(56,201,184,.22);color:#70D5C8}
+.ag{background:rgba(212,168,64,.07);border:1px solid rgba(212,168,64,.22);color:var(--gold2)}
+
+/* ── CARD (non-stop) ── */
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:13px;margin-bottom:10px;overflow:hidden}
+.card-hdr{padding:13px 15px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.card-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.card-txt{flex:1}
+.card-name{font-size:14px;font-weight:700;color:#fff}
+.card-sub{font-size:11px;color:var(--muted);margin-top:1px}
+.c-badge{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600;flex-shrink:0}
+.cbg{background:rgba(92,184,138,.12);color:#7DDAA8;border:1px solid rgba(92,184,138,.25)}
+.cbo{background:rgba(212,168,64,.12);color:var(--gold2);border:1px solid rgba(212,168,64,.25)}
+.cbr{background:rgba(232,85,80,.1);color:#F09090;border:1px solid rgba(232,85,80,.25)}
+.cbt{background:rgba(56,201,184,.08);color:#70D5C8;border:1px solid rgba(56,201,184,.22)}
+.card-body{display:none;padding:0 15px 15px;border-top:1px solid var(--border)}
+.card.open .card-body{display:block}
+.cbi{padding-top:11px}
+
+/* ── TIMELINE ── */
+.tl{position:relative;padding-left:24px}
+.tl::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:rgba(212,168,64,.15);border-radius:1px}
+.tli{position:relative;margin-bottom:14px}
+.tli-dot{position:absolute;left:-18px;top:4px;width:10px;height:10px;border-radius:50%;border:2px solid var(--gold);background:var(--bg)}
+.tli-time{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--gold);margin-bottom:2px}
+.tli-text{font-size:13px;color:var(--text);line-height:1.4}
+.tli-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── FOOD ── */
+.food{background:var(--bg3);border:1px solid var(--border);border-radius:13px;margin-bottom:10px;overflow:hidden}
+.food-top{padding:13px 15px 10px;display:flex;gap:11px;align-items:flex-start}
+.food-emo{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.food-info{flex:1}
+.food-name{font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#fff}
+.food-sub{font-size:11px;color:var(--muted);font-style:italic;margin-top:1px}
+.food-desc{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5}
+.food-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.ftag{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:600}
+.ft-hal{background:rgba(92,184,138,.12);color:#7DDAA8}
+.ft-must{background:rgba(212,168,64,.12);color:var(--gold2)}
+.ft-kids{background:rgba(56,201,184,.1);color:#70D5C8}
+.ft-cheap{background:rgba(152,120,216,.1);color:#C0A8F0}
+.ft-pork{background:rgba(232,85,80,.09);color:#F09090}
+.food-where{background:var(--bg4);padding:9px 15px 12px}
+.fw-lbl{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:6px}
+.fwr{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.fwr:last-child{border-bottom:none}
+.fw-name{font-size:12px;color:var(--text);font-weight:500}
+.fw-det{font-size:10px;color:var(--muted);text-align:right}
+
+/* TABLES */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:7px}
+.tbl th{text-align:left;padding:7px 9px;background:var(--bg4);color:var(--muted);font-size:9px;letter-spacing:1px;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.tbl td{padding:8px 9px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tc-g{color:#7DDAA8;font-weight:600}
+.tc-o{color:var(--gold2)}
+.tc-r{color:#F09090}
+
+/* BOOKING GRID */
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:400px){.bgrid{grid-template-columns:1fr}}
+.bitem{background:var(--bg4);border-radius:8px;padding:10px 12px}
+.bn{font-size:13px;font-weight:600;color:var(--text)}
+.bw{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--gold);margin:3px 0 2px}
+.bno{font-size:11px;color:var(--muted)}
+
+/* CHECK-IN BADGE */
+.checkin-banner{background:linear-gradient(135deg,rgba(212,168,64,.15),rgba(212,168,64,.05));border:1px solid rgba(212,168,64,.35);border-radius:12px;padding:13px 15px;margin-bottom:5px;display:flex;gap:11px;align-items:center}
+.checkin-ico{font-size:24px;flex-shrink:0}
+.checkin-ttl{font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--gold2)}
+.checkin-sub{font-size:12px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-flag">🇲🇾 &nbsp; Malaysia &nbsp;·&nbsp; Apr 11–15, 2026 &nbsp;·&nbsp; 7 Travellers &nbsp; 🇲🇾</div>
+  <h1 class="hero-title">Kuala Lumpur<br><em>Complete Travel Guide</em></h1>
+  <div class="hero-sub">Basil · Roniya · Jonas &amp; Family &nbsp;|&nbsp; 27+ Attractions &nbsp;|&nbsp; Food Bible &nbsp;|&nbsp; Full Logistics</div>
+  <div class="hero-chips">
+    <span class="hero-chip">✈ COK → KUL · Apr 11 00:30</span>
+    <span class="hero-chip">🏨 Trion @ KL · Chan Sow Lin</span>
+    <span class="hero-chip">Check-in 3 PM · Checkout 11 AM</span>
+    <span class="hero-chip">✈ KUL → COK · Apr 15 22:25</span>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <div class="leg"><div class="leg-dot" style="background:#80C0F0"></div>MRT/LRT</div>
+  <div class="leg"><div class="leg-dot" style="background:#C0A8F0"></div>KTM</div>
+  <div class="leg"><div class="leg-dot" style="background:#7DDAA8"></div>Grab</div>
+  <div class="leg"><div class="leg-dot" style="background:#D4A840"></div>Walk</div>
+  <div class="leg"><div class="leg-dot" style="background:#F0B888"></div>Bus</div>
+  <div class="leg">🌅 Sunset &nbsp; 🌙 Night &nbsp; 🌄 Early AM &nbsp; ☀️ Morning &nbsp; | Tap any stop to expand · ↗ Google Maps · Skip to hide a stop</div>
+</div>
+
+<!-- MAIN NAV -->
+<div class="main-nav">
+  <button class="nav-btn on"  onclick="showPage('itin',this)">📅 Day-by-Day</button>
+  <button class="nav-btn"     onclick="showPage('arrival',this)">✈️ Arrival Plan</button>
+  <button class="nav-btn"     onclick="showPage('luggage',this)">🧳 Luggage</button>
+  <button class="nav-btn"     onclick="showPage('freshup',this)">🚿 Freshen Up</button>
+  <button class="nav-btn"     onclick="showPage('checkout',this)">🚪 Checkout</button>
+  <button class="nav-btn"     onclick="showPage('food',this)">🍜 Food Bible</button>
+  <button class="nav-btn"     onclick="showPage('book',this)">🎟️ Bookings</button>
+</div>
+
+<!-- ═══════════════ ITINERARY ═══════════════ -->
+<div class="page on" id="pg-itin">
+<div class="day-tabs">
+  <button class="day-tab on" onclick="showDay(0,this)">Day 1 · Apr 11</button>
+  <button class="day-tab" onclick="showDay(1,this)">Day 2 · Apr 12</button>
+  <button class="day-tab" onclick="showDay(2,this)">Day 3 · Apr 13</button>
+  <button class="day-tab" onclick="showDay(3,this)">Day 4 · Apr 14</button>
+  <button class="day-tab" onclick="showDay(4,this)">Day 5 · Apr 15</button>
+</div>
+
+<!-- ───────── DAY 1 ───────── -->
+<div class="day-panel on" id="dp-0">
+  <div class="day-hdr">
+    <div><div class="dhdr-title">Arrival + Little India + KLCC</div><div class="dhdr-date">Saturday, 11 April 2026</div></div>
+    <div class="dhdr-theme">Land 7:20 AM · KLIA2<br>Check-in 3 PM · Trion @ KL</div>
+  </div>
+  <div class="day-sum">
+    <div class="si"><div class="si-lbl">Stops</div><div class="si-val">6</div></div>
+    <div class="si"><div class="si-lbl">Distance</div><div class="si-val">~14 km</div></div>
+    <div class="si"><div class="si-lbl">Transport</div><div class="si-val">~RM90/pax</div></div>
+    <div class="si"><div class="si-lbl">Paid Spots</div><div class="si-val">RM100–145</div></div>
+  </div>
+  <div class="alert aw"><span class="ai-ico">⚠️</span><div class="ai-body"><div class="ai-ttl">Room ready at 3 PM — bags go to Dr. Locker KL Sentral first</div>Freshen up at Little India mamak or Fitness First KLCC · See Arrival &amp; Freshen Up tabs for full morning plan.</div></div>
+  <div class="alert aw"><span class="ai-ico">⚠️</span><div class="ai-body"><div class="ai-ttl">Petronas Twin Towers CLOSED Mondays — book NOW at petronastwintowers.com.my</div>Tickets sell out 2–3 weeks ahead. You land Saturday — visit today or Sunday only!</div></div>
+
+  <!-- Stop 1: Little India -->
+  <div class="stop" id="s1_1">
+    <div class="stop-img-wrap">
+      <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNF2RiE3i4H-jMEJLx4s2DvOEhVGqK5G_cNRrGFJSjk9gE2t5t31fTLWuovZX2Jh6Pr28W0MtYjZFp6w3vlf3K_xc2pKB67yjT3T5BjM-1bWW55U_P5k7uBIDhNi88BnI4UWoY-DzIiSuFYX6I=s4800-w800-h600" alt="Little India Brickfields" onerror="this.parentElement.style.display='none'">
+      <div class="stop-img-overlay"></div>
+      <div class="stop-img-label"><span class="stop-number">STOP 1</span><span class="stop-cost-img sci-free">FREE</span></div>
+    </div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)">
+        <div class="stop-num-circle" style="background:rgba(212,168,64,.15);color:var(--gold2)">1</div>
+        <div class="stop-main">
+          <div class="stop-meta"><span class="stime">9:00 – 10:30 AM</span><span class="tbadge tb-grn">☀️ Breakfast Here</span></div>
+          <div class="stop-name">Little India — Brickfields</div>
+          <div class="stop-tag">Right next to KL Sentral · Roti canai + teh tarik · Colourful Indian quarter</div>
+        </div>
+      </div>
+      <div class="stop-actions">
+        <a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Little+India+Brickfields+Kuala+Lumpur" target="_blank">↗ Google Maps</a>
+        <button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button>
+        <button class="act-btn btn-skip" onclick="skipStop(this,'s1_1','conn_1_1_2')">Skip</button>
+      </div>
+      <div class="stop-body">
+        <div class="sbi">
+          <div class="place-brief"><div class="pb-row"><span class="pb-emo">🪔</span><div><div class="pb-name">Little India Brickfields</div><div class="pb-desc">KL's vibrant Indian quarter — colourful arches, spice shops, sari stores, flower garlands, and the best roti canai breakfast in the city. 5-min walk from KL Sentral — perfect for freshening up and breakfast after landing.</div></div></div></div>
+          <div class="igrid">
+            <div class="icell"><div class="ilbl">From KL Sentral</div><div class="ival">0.6 km walk · 7 min · or 3 min Grab</div></div>
+            <div class="icell"><div class="ilbl">Hours</div><div class="ival">10:30 AM–9:30 PM · but food stalls open from 6 AM</div></div>
+            <div class="icell"><div class="ilbl">Best For</div><div class="ival">Roti canai breakfast + teh tarik while bags are in locker</div></div>
+            <div class="icell"><div class="ilbl">Budget</div><div class="ival">RM4–8/person for breakfast · Very cheap</div></div>
+          </div>
+          <div class="tip"><b>💡 Perfect arrival plan:</b> Store bags at Dr. Locker → 7 min walk to Brickfields → authentic roti canai breakfast RM4/person → explore colourful streets → freshen up at gym → MRT to KLCC.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector" id="conn_1_1_2"><span class="cmode cm-mrt">🚇 MRT</span><span class="cdist">KL Sentral → KLCC · 2 stops · 4.5 km · ~12 min</span><span class="ccost">RM3/pax</span></div>
+
+  <!-- Stop 2: Aquaria -->
+  <div class="stop" id="s1_2">
+    <div class="stop-img-wrap">
+      <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFe0jZbAJG7ASsUTCbNOVjhajoozUFeBR16nGHzrUV2apHxBS4rnO1RU8GLKqzDfVqT-l5lahEjKXtEdI8bQrXc9WGEsTqJTMNo8xcN_OanynOCgpsHc0Rok3isyHsJKYEmOh9Macc-VGyzWQ=s4800-w800-h600" alt="Aquaria KLCC" onerror="this.parentElement.style.display='none'">
+      <div class="stop-img-overlay"></div>
+      <div class="stop-img-label"><span class="stop-number">STOP 2</span><span class="stop-cost-img sci-paid">~RM60 Klook</span></div>
+    </div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)">
+        <div class="stop-num-circle" style="background:rgba(92,184,138,.15);color:#7DDAA8">2</div>
+        <div class="stop-main">
+          <div class="stop-meta"><span class="stime">11:00 AM – 1:00 PM</span><span class="tbadge tb-grn">☀️ Morning Best</span></div>
+          <div class="stop-name">Aquaria KLCC</div>
+          <div class="stop-tag">Shark tunnel · Diver feeding 11:30 AM · Kids love it · Book Klook</div>
+        </div>
+      </div>
+      <div class="stop-actions">
+        <a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Aquaria+KLCC+Kuala+Lumpur" target="_blank">↗ Google Maps</a>
+        <button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button>
+        <button class="act-btn btn-skip" onclick="skipStop(this,'s1_2','conn_1_2_3')">Skip</button>
+      </div>
+      <div class="stop-body"><div class="sbi">
+        <div class="place-brief"><div class="pb-row"><span class="pb-emo">🦈</span><div><div class="pb-name">Aquaria KLCC</div><div class="pb-desc">World-class underwater tunnel where sharks, rays and sea turtles glide above you. Jonas will be mesmerised. Diver feeds at 11:30 AM. Book via Klook to save ~RM15/ticket vs walk-in.</div></div></div></div>
+        <div class="igrid"><div class="icell"><div class="ilbl">Book</div><div class="ival">Klook.com · saves RM15–20/ticket · ~RM120 for group of 7</div></div><div class="icell"><div class="ilbl">Hours</div><div class="ival">Mon–Fri 10AM–8PM · Sat–Sun 9AM–9PM</div></div></div>
+        <div class="btbox"><div class="btlbl">☀️ Why Morning?</div><div class="bttxt">Diver feeding at 11:30 AM. Fewest tour buses. Tunnel lighting most vivid before noon.</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="connector" id="conn_1_2_3"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">Aquaria → KLCC Park → Petronas · 0.3 km · ~4 min</span><span class="ccost">FREE</span></div>
+
+  <!-- Stop 3: KLCC Park -->
+  <div class="stop" id="s1_3">
+    <div class="stop-img-wrap">
+      <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNF5hudMgvxyjomYeBbjWK6xeqJiRM-dD5yYWyEjjMVF4KLCfePamtFcsk8AHUJCjUjqRtlbzOAGqY5uAvxx238M2teOrLQplPDPd6us4xMuF9rBeoj35qcgY4eYaMuELtjpSWBQntOdcdJcCg=s4800-w800-h600" alt="KLCC Park" onerror="this.parentElement.style.display='none'">
+      <div class="stop-img-overlay"></div>
+      <div class="stop-img-label"><span class="stop-number">STOP 3</span><span class="stop-cost-img sci-free">FREE</span></div>
+    </div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)">
+        <div class="stop-num-circle" style="background:rgba(92,184,138,.15);color:#7DDAA8">3</div>
+        <div class="stop-main">
+          <div class="stop-meta"><span class="stime">1:00 – 2:30 PM</span><span class="tbadge tb-any">🌳 Anytime · Fountain 8 PM</span></div>
+          <div class="stop-name">KLCC Park + Lunch</div>
+          <div class="stop-tag">Free park · Fountain show 8 PM · Suria KLCC food court for lunch</div>
+        </div>
+      </div>
+      <div class="stop-actions">
+        <a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=KLCC+Park+Kuala+Lumpur" target="_blank">↗ Google Maps</a>
+        <button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button>
+        <button class="act-btn btn-skip" onclick="skipStop(this,'s1_3','conn_1_3_4')">Skip</button>
+      </div>
+      <div class="stop-body"><div class="sbi"><div class="tip"><b>💡 Lunch:</b> Suria KLCC mall food court inside — halal options RM12–20/person. Blue Hour at 6:45 PM for best Twin Towers photos — walk deep to whale sculptures.</div></div></div>
+    </div>
+  </div>
+
+  <div class="connector" id="conn_1_3_4"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">KLCC Park → Petronas Towers · 0.1 km · ~2 min</span><span class="ccost">FREE</span></div>
+
+  <!-- 3 PM Check-in Banner -->
+  <div class="checkin-banner">
+    <div class="checkin-ico">🏨</div>
+    <div>
+      <div class="checkin-ttl">3:00 PM — Check-in at Trion @ KL</div>
+      <div class="checkin-sub">MRT KLCC → Chan Sow Lin (3 stops, 8 min) · Collect bags from KL Sentral locker first or Grab XL with all bags · Drop luggage, freshen up, rest 30 min · Then head back for Petronas at 5 PM</div>
+    </div>
+  </div>
+
+  <!-- Stop 4: Petronas -->
+  <div class="stop" id="s1_4">
+    <div class="stop-img-wrap">
+      <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHVgq-kucVRuPT7yVnJ_DXXR4MDLBVMk1ZPZae_QhZMnYxxW4ZMd7S-TRnn9Z3U4114CBQ7Xh7hnV8F5ORnVF90h3n7cEkiQgcBkYkqnXC-RRpxGpKw4XZ8beqZqfTJlBK1yPifJ78wyIYILvs=s4800-w800-h600" alt="Petronas Twin Towers" onerror="this.parentElement.style.display='none'">
+      <div class="stop-img-overlay"></div>
+      <div class="stop-img-label"><span class="stop-number">STOP 4</span><span class="stop-cost-img sci-paid">RM100/adult</span></div>
+    </div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)">
+        <div class="stop-num-circle" style="background:rgba(212,168,64,.15);color:var(--gold2)">4</div>
+        <div class="stop-main">
+          <div class="stop-meta"><span class="stime">5:00 – 7:30 PM</span><span class="tbadge tb-gold">🌅 SUNSET = BEST</span></div>
+          <div class="stop-name">Petronas Twin Towers</div>
+          <div class="stop-tag">Skybridge L41 · Observatory L86 · ⚠️ CLOSED MONDAYS · Book NOW</div>
+        </div>
+      </div>
+      <div class="stop-actions">
+        <a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Petronas+Twin+Towers+Kuala+Lumpur" target="_blank">↗ Google Maps</a>
+        <button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button>
+        <button class="act-btn btn-skip" onclick="skipStop(this,'s1_4','conn_1_4_5')">Skip</button>
+      </div>
+      <div class="stop-body"><div class="sbi">
+        <div class="place-brief"><div class="pb-row"><span class="pb-emo">🏙️</span><div><div class="pb-name">Petronas Twin Towers — Malaysia's icon</div><div class="pb-desc">The 88-storey twin skyscrapers dominated the world skyline when built in 1998. Skybridge at Level 41 connects the two towers; Observatory at Level 86 gives a 360° panorama of KL. Closed every Monday.</div></div></div></div>
+        <div class="igrid"><div class="icell"><div class="ilbl">Book Online</div><div class="ival">petronastwintowers.com.my · Book 2–3 weeks ahead!</div></div><div class="icell"><div class="ilbl">⚠️ Closed</div><div class="ival">MONDAYS · Open Tue–Sun 9AM–9PM</div></div></div>
+        <div class="btbox"><div class="btlbl">🌅 Why 5 PM?</div><div class="bttxt">Arrive with golden city glow, watch it transition to full night skyline — both in one visit. Far more dramatic than daytime. Café at Level 86 for drinks with the view.</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="connector" id="conn_1_4_5"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">Petronas → Saloma Bridge · 1.2 km · ~15 min</span><span class="ccost">FREE</span></div>
+
+  <!-- Stop 5: Saloma Bridge -->
+  <div class="stop" id="s1_5">
+    <div class="stop-img-wrap">
+      <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHcx69UF4Ay_5FzB_40Lx9YixbRUJv6t6FBaCJH2Ywzj5Uru0nWktSlrpD9bFpDmZzr1AX0uGPlekpAGF3lAHoBSbWl988IawSQE7FRlWPILa5P2qXf988Lro_PTu6m1GZkmWNZc7HfhCTTYZMrSh8Z=s4800-w800-h600" alt="Saloma Bridge" onerror="this.parentElement.style.display='none'">
+      <div class="stop-img-overlay"></div>
+      <div class="stop-img-label"><span class="stop-number">STOP 5</span><span class="stop-cost-img sci-free">FREE</span></div>
+    </div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)">
+        <div class="stop-num-circle" style="background:rgba(74,158,232,.15);color:#80C0F0">5</div>
+        <div class="stop-main">
+          <div class="stop-meta"><span class="stime">8:00 – 9:00 PM</span><span class="tbadge tb-ngt">🌙 NIGHT ONLY</span></div>
+          <div class="stop-name">Saloma Link Bridge</div>
+          <div class="stop-tag">LED-lit pedestrian bridge · Twin Towers backdrop · Best photo spot in KL at night</div>
+        </div>
+      </div>
+      <div class="stop-actions">
+        <a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Saloma+Link+Bridge+Kuala+Lumpur" target="_blank">↗ Google Maps</a>
+        <button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button>
+        <button class="act-btn btn-skip" onclick="skipStop(this,'s1_5','conn_1_5_end')">Skip</button>
+      </div>
+      <div class="stop-body"><div class="sbi">
+        <div class="place-brief"><div class="pb-row"><span class="pb-emo">🌉</span><div><div class="pb-name">Saloma Link (Pintasan Saloma)</div><div class="pb-desc">Pedestrian bridge inspired by Sirih Junjung (Malay wedding betel arrangement). RGB LED lights transform it at night. The platform at the Kampung Baru end frames the Twin Towers perfectly.</div></div></div></div>
+        <div class="btbox"><div class="btlbl">🌙 Worthless by Day</div><div class="bttxt">The bridge is plain by day. RGB lights + Twin Towers = one of KL's best night photos. Arrive 7:30 PM when deep blue sky is still visible behind the towers.</div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="connector" id="conn_1_5_end"><span class="cmode cm-mrt">🚇 MRT</span><span class="cdist">KLCC → Chan Sow Lin (hotel) · 3 stops · ~8 min</span><span class="ccost">RM2.50</span></div>
+</div>
+
+<!-- ───────── DAY 2 ───────── -->
+<div class="day-panel" id="dp-1">
+  <div class="day-hdr">
+    <div><div class="dhdr-title">Old KL + Chinatown + Kwai Chai Hong + Jalan Alor</div><div class="dhdr-date">Sunday, 12 April 2026</div></div>
+    <div class="dhdr-theme">Heritage Walk Day<br>MRT → Pasar Seni</div>
+  </div>
+  <div class="day-sum">
+    <div class="si"><div class="si-lbl">Stops</div><div class="si-val">9</div></div>
+    <div class="si"><div class="si-lbl">Walking</div><div class="si-val">~6 km</div></div>
+    <div class="si"><div class="si-lbl">Transport</div><div class="si-val">~RM15/pax</div></div>
+    <div class="si"><div class="si-lbl">Paid</div><div class="si-val">RM20 museum</div></div>
+  </div>
+
+  <!-- Stop 1: National Mosque -->
+  <div class="stop" id="s2_1">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHIjUmWfdFLaEUWUJklGlXUzYHif8H9ayYsemxqxFiNQRohmFDi2fzvFIjhCDK0q6m4Y2vx3PrFf5MACI0hjw9mMEYMoJFDWHnOTLxParnX3MNYmi5jPgWpbGo9WgJQzcBcYwn-H1rpJHww=s4800-w800-h600" alt="National Mosque" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 1</span><span class="stop-cost-img sci-free">FREE</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(92,184,138,.15);color:#7DDAA8">1</div><div class="stop-main"><div class="stop-meta"><span class="stime">9:30 – 10:30 AM</span><span class="tbadge tb-grn">☀️ Morning Cool</span></div><div class="stop-name">National Mosque (Masjid Negara)</div><div class="stop-tag">Free · Headscarves provided · 9:30AM–5:30PM · Open courtyard photos</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=National+Mosque+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_1','conn_2_1_2')">Skip</button></div>
+      <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🕌</span><div><div class="pb-name">National Mosque of Malaysia (1965)</div><div class="pb-desc">Iconic 18-pointed star umbrella roof with blue folds representing Malaysia's 13 states. One of KL's most beautiful structures. Robes provided free at entrance for all visitors including non-Muslims.</div></div></div></div><div class="igrid"><div class="icell"><div class="ilbl">From Hotel</div><div class="ival">MRT Chan Sow Lin → Pasar Seni · 3 stops · ~10 min</div></div><div class="icell"><div class="ilbl">⚠️ Note</div><div class="ival">Closed to tourists during prayer times · Friday closed 11:30AM–2:30PM</div></div></div></div></div>
+    </div>
+  </div>
+
+  <div class="connector" id="conn_2_1_2"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">Mosque → National Monument · 0.9 km · ~11 min</span><span class="ccost">FREE</span></div>
+
+  <div class="stop" id="s2_2">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFikyCm5tG8huNx9J0JTbJjVCeT7o8RkvVeKSll9NUIZFtqsywoM0EX_hCwSYs4w7SvbXygkqueNU2CHw077A8eb4uj1zE-cTlL0WxK2ftmyOujcV3AQnGMnG-KBeocuIpBKDQzC5jTnJaI108=s4800-w800-h600" alt="National Monument" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 2</span><span class="stop-cost-img sci-free">FREE</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(92,184,138,.15);color:#7DDAA8">2</div><div class="stop-main"><div class="stop-meta"><span class="stime">10:30 – 11:15 AM</span><span class="tbadge tb-grn">☀️ Morning Light</span></div><div class="stop-name">National Monument (Tugu Negara)</div><div class="stop-tag">Free · Bronze war memorial · Botanical garden setting</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Tugu+Negara+National+Monument+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_2','conn_2_2_3')">Skip</button></div>
+      <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🗿</span><div><div class="pb-name">Tugu Negara</div><div class="pb-desc">15-metre bronze sculpture honouring soldiers who died during WWII and Malayan Emergency. Set peacefully in the Perdana Botanical Garden. The walk through the gardens itself is beautiful.</div></div></div></div></div></div>
+    </div>
+  </div>
+  <div class="connector" id="conn_2_2_3"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">Monument → Merdeka Square · 1.1 km · ~14 min</span><span class="ccost">FREE</span></div>
+
+  <div class="stop" id="s2_3">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNGrPHEG1MlR4uk9_vFaj5j9TjKFqyTXVjoyoaCG3rQ9urvNY6zsaWRvP7iuOkyhPiztJjNhWxRf27YDTSLd4bi0mtaUSPfkchBvZOHU49zBoSJ5EqslzX0OHKwS0cgOIcd4yOJW1SUn3a75IcU=s4800-w800-h600" alt="Merdeka Square" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 3</span><span class="stop-cost-img sci-free">FREE · 24hrs</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(212,168,64,.15);color:var(--gold2)">3</div><div class="stop-main"><div class="stop-meta"><span class="stime">11:15 AM – 12:00 PM</span><span class="tbadge tb-gold">🌅 Best at Golden Hour</span></div><div class="stop-name">Independence Square (Merdeka Square)</div><div class="stop-tag">Free · Where Malaysia declared independence · Sultan Abdul Samad Building</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Merdeka+Square+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_3','conn_2_3_4')">Skip</button></div>
+      <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🏛️</span><div><div class="pb-name">Dataran Merdeka</div><div class="pb-desc">The square where Malaysia's independence was declared on August 31, 1957. Surrounded by Moorish-style colonial buildings including the iconic Sultan Abdul Samad Building with its copper domes. Recently renovated and spectacular.</div></div></div></div></div></div>
+    </div>
+  </div>
+  <div class="connector" id="conn_2_3_4"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">Merdeka Square → Islamic Arts Museum · 0.7 km · ~9 min</span><span class="ccost">FREE</span></div>
+
+  <div class="stop" id="s2_4">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNGsLdGJdxu49ONgor9uv-d5NIjjksEvEe4mTZv8yp94yHhwD4_wc7lnfOl0IG91JJITHjKTCDao6X8GIK3PHKVDiR1XvNASf94OKRAd9DGkbYRbbCW1n8KyXY1qO0qxedjNG7pYm1ulwhFZRz9tZA17kA=s4800-w800-h600" alt="Islamic Arts Museum" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 4</span><span class="stop-cost-img sci-paid">RM20/adult</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(152,120,216,.15);color:#C0A8F0">4</div><div class="stop-main"><div class="stop-meta"><span class="stime">12:00 – 2:00 PM</span><span class="tbadge tb-any">🌳 Midday A/C Refuge</span></div><div class="stop-name">Islamic Arts Museum + Lunch</div><div class="stop-tag">RM20/adult · Kids free · Best A/C escape · Moza restaurant inside for halal lunch</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Islamic+Arts+Museum+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_4','conn_2_4_5')">Skip</button></div>
+      <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🏺</span><div><div class="pb-name">Islamic Arts Museum Malaysia</div><div class="pb-desc">World's largest Islamic arts museum — stunning Mughal miniatures, Islamic architecture models, textiles, jewellery and manuscripts from across the Muslim world. Fully air-conditioned with a great Middle Eastern restaurant inside.</div></div></div></div><div class="tip"><b>💡 Midday strategy:</b> KL is hottest 12–3 PM. This museum + lunch inside is the perfect escape.</div></div></div>
+    </div>
+  </div>
+  <div class="connector" id="conn_2_4_5"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">Museum → Central Market · 0.8 km · ~10 min</span><span class="ccost">FREE</span></div>
+
+  <div class="stop" id="s2_5">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/places/ANXAkqHtJsCTBwU6weO4vmifJSbI4HtaMkLOpFtd14gblLMJ86avrWNDJUfIYIxDZDOJIYTUbnJc5RQXrVkb67rsCYAhajvrXnn8k88=s4800-w800-h600" alt="Central Market" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 5</span><span class="stop-cost-img sci-free">FREE Entry</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(212,168,64,.15);color:var(--gold2)">5</div><div class="stop-main"><div class="stop-meta"><span class="stime">2:00 – 3:15 PM</span><span class="tbadge tb-any">🛍️ Afternoon Shopping</span></div><div class="stop-name">Central Market (Pasar Seni)</div><div class="stop-tag">Free · 1888 heritage building · Batik · Crafts · Souvenirs · Kasturi Walk</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Central+Market+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_5','conn_2_5_6')">Skip</button></div>
+      <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🏮</span><div><div class="pb-name">Central Market / Pasar Seni</div><div class="pb-desc">Beautifully restored 1888 Art Deco building full of batik fabrics, pewter, traditional crafts, and Malaysian souvenirs. Kasturi Walk outside has street performers. Cash only at most stalls.</div></div></div></div></div></div>
+    </div>
+  </div>
+  <div class="connector" id="conn_2_5_6"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">Central Market → Kwai Chai Hong · 0.3 km · ~4 min</span><span class="ccost">FREE</span></div>
+
+  <!-- NEW: Kwai Chai Hong -->
+  <div class="stop" id="s2_6">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFMJGqzDOm2eA2MUqi1vzOqWh9TgpJmIlZc25Hz_i4YoY-vwNmSKdm6TMXQWaKwwpuN2IdnD1Zd15zErja8BCdAxNkYGxyAnbFMdyCxJNgacpXhAUaL9y89Zgms2lqyg2nuuehRH0kwJHeD8Q=s4800-w800-h600" alt="Kwai Chai Hong" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 6 · NEW</span><span class="stop-cost-img sci-free">FREE</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(232,144,74,.15);color:#F0B888">6</div><div class="stop-main"><div class="stop-meta"><span class="stime">3:15 – 4:15 PM</span><span class="tbadge tb-sst">🌅 Dusk = Magical</span></div><div class="stop-name">Kwai Chai Hong (Ghost Alley)</div><div class="stop-tag">Hidden heritage alley · 1960s Chinatown murals · Zodiac Guardian sculptures · Instagram famous</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Kwai+Chai+Hong+Lorong+Panggung+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_6','conn_2_6_7')">Skip</button></div>
+      <div class="stop-body"><div class="sbi">
+        <div class="place-brief"><div class="pb-row"><span class="pb-emo">🎨</span><div><div class="pb-name">Kwai Chai Hong — KL's Hidden Heritage Alley</div><div class="pb-desc">A restored hidden alleyway tucked behind busy Petaling Street. "Kwai Chai Hong" means "Ghost Alley" from its dark past. Now transformed into a vibrant cultural space with murals depicting 1960s Chinatown life — children playing, street vendors, old architecture. Features 7-foot Zodiac Guardian sculptures and interactive QR code elements. One of KL's most photogenic hidden gems.</div></div></div></div>
+        <div class="igrid"><div class="icell"><div class="ilbl">Hours</div><div class="ival">9AM–midnight · FREE entry · Open every day</div></div><div class="icell"><div class="ilbl">Best Time</div><div class="ival">Dusk (6–8 PM) when lanterns glow. But afternoon is less crowded for photos.</div></div><div class="icell"><div class="ilbl">Location</div><div class="ival">Lorong Panggung, off Jalan Petaling · 3 min walk from Central Market</div></div><div class="icell"><div class="ilbl">Duration</div><div class="ival">20–40 min to explore fully</div></div></div>
+        <div class="btbox"><div class="btlbl">🌅 Why Dusk?</div><div class="bttxt">The hanging lanterns start to glow around 6 PM. Murals look dramatic in warm evening light. Visit around 6 PM after Petaling Street shopping for the best photos of Jonas among the lanterns and zodiac sculptures.</div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="connector" id="conn_2_6_7"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">Kwai Chai Hong → Guan Di Temple → Petaling Street · 0.2 km · ~3 min</span><span class="ccost">FREE</span></div>
+
+  <div class="stop" id="s2_7">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNGXW5u8saHMHipRqwVczf4SUwPG5S9aB70oWiczRoMUWhTtYu4wfXh_lVjpH4Vc_QDkuLRgztF9-1gaKY8d1RAHDfuKIasnbHHe1hBOabDN64raxt1EU4e-5AowrtFHehx1okg3DECJmrIeVemaTsNz=s4800-w800-h600" alt="Petaling Street" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 7</span><span class="stop-cost-img sci-free">FREE</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(232,144,74,.15);color:#F0B888">7</div><div class="stop-main"><div class="stop-meta"><span class="stime">4:15 – 5:30 PM</span><span class="tbadge tb-any">🏮 Evening Best</span></div><div class="stop-name">Guan Di Temple + Petaling Street</div><div class="stop-tag">⚠️ Guan Di closes 3 PM — visit Kwai Chai first! · Bargain at 30% of asking price</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Petaling+Street+Chinatown+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_7','conn_2_7_8')">Skip</button></div>
+      <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🏮</span><div><div class="pb-name">Petaling Street Chinatown</div><div class="pb-desc">KL's iconic Chinatown covered market. Red lanterns, bargain clothes, bags, souvenirs, street food. The 100-year-old Guan Di Temple (Qing dynasty) is tucked inside. Lanterns light up beautifully at dusk. Always bargain — start at 30% of asking price.</div></div></div></div></div></div>
+    </div>
+  </div>
+  <div class="connector" id="conn_2_7_8"><span class="cmode cm-grab">🚗 Grab</span><span class="cdist">Chinatown → Jalan Alor · 1.4 km · ~8 min</span><span class="ccost">~RM8</span></div>
+
+  <!-- Durian Stop -->
+  <div class="stop" id="s2_8">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHbptQs2N4Wa_6G4DSlV-I2VGOcgD6y5agwwtespgK3qTqeC9qqvIZK8ucOA41j6v_uco0Q4kORTre6kUA4jFFiG9CoR-Hi1yIdvyI-nMDhqGKB7pIuWa-7JqGL0kwFJuuaOFglUhtr8BobbBE=s4800-w800-h600" alt="Durian Dury Dury" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 8 · OPTIONAL</span><span class="stop-cost-img sci-paid">RM50–80/platter</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(232,85,80,.15);color:#F09090">8</div><div class="stop-main"><div class="stop-meta"><span class="stime">5:30 – 6:30 PM</span><span class="tbadge tb-any">👑 April = Peak Season!</span></div><div class="stop-name">Durian Tasting — Dury Dury / MyBolehBoleh</div><div class="stop-tag">Air-conditioned · MSW (Mao Shan Wang) platter · Both shops on Jalan Sultan</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Dury+Dury+Durian+Petaling+Street+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_8','conn_2_8_9')">Skip</button></div>
+      <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">👑</span><div><div class="pb-name">Durian — King of Fruits (April = Peak Season)</div><div class="pb-desc">April is peak durian season in Malaysia! Try Mao Shan Wang (MSW) — the world's finest variety with small seeds, thick creamy flesh and bittersweet flavour. Both shops are air-conditioned so the smell stays manageable. Staff will guide you through the varieties. Let Jonas try — he might become a fan!</div></div></div></div><div class="tip"><b>💡 Strategy:</b> Start with local variety first → progress to MSW. Order the tasting platter to compare. ⭐ Dury Dury rated 4.9 on Google.</div></div></div>
+    </div>
+  </div>
+  <div class="connector" id="conn_2_8_9"><span class="cmode cm-grab">🚗 Grab</span><span class="cdist">Chinatown/Petaling St → Jalan Alor · 1.4 km · ~8 min</span><span class="ccost">~RM8</span></div>
+
+  <div class="stop" id="s2_9">
+    <div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFcpaBKYPJOh5BZvbAEZj1A1OjOiY6AgdlOtYoBAQaP98Uh16-OPenzL8nNkRsD1cxBAeKbYeFYlz5mgh97GNuSVQ3UZ-yrumsagl7qAIzyfZUPcrLHiXtxyIFRTDS8egq1w9o7sHhFM22I0zCmgkMXhA=s4800-w800-h600" alt="Jalan Alor" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 9</span><span class="stop-cost-img sci-paid">RM15–25/person</span></div></div>
+    <div class="stop-inner">
+      <div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(232,85,80,.15);color:#F09090">9</div><div class="stop-main"><div class="stop-meta"><span class="stime">7:00 – 9:30 PM</span><span class="tbadge tb-ngt">🌙 NIGHT ONLY</span></div><div class="stop-name">Jalan Alor Food Street</div><div class="stop-tag">⚠️ CLOSED MONDAYS · Satay · Grilled wings · Mango sticky rice · Coconut ice cream</div></div></div>
+      <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Jalan+Alor+Food+Street+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s2_9','')">Skip</button></div>
+      <div class="stop-body"><div class="sbi"><div class="btbox"><div class="btlbl">🌙 7 PM is when it comes alive</div><div class="bttxt">Lanterns glow, grills smoke, the whole street is electric. Must try: BBQ wings (Wong Ah Wah stall), char kway teow, mango sticky rice, coconut ice cream. Budget RM120–180 for all 7. Return: LRT Bukit Bintang → Chan Sow Lin (2 stops, RM2.80).</div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────── DAY 3 ───────── -->
+<div class="day-panel" id="dp-2">
+  <div class="day-hdr">
+    <div><div class="dhdr-title">Batu Caves + KL Tower + Bukit Bintang</div><div class="dhdr-date">Monday, 13 April 2026</div></div>
+    <div class="dhdr-theme">⚠️ Petronas CLOSED<br>Early start essential</div>
+  </div>
+  <div class="day-sum">
+    <div class="si"><div class="si-lbl">Stops</div><div class="si-val">6</div></div>
+    <div class="si"><div class="si-lbl">Distance</div><div class="si-val">~30 km</div></div>
+    <div class="si"><div class="si-lbl">Transport</div><div class="si-val">~RM35–45/pax</div></div>
+    <div class="si"><div class="si-lbl">Paid</div><div class="si-val">~RM55–75/adult</div></div>
+  </div>
+
+  <div class="stop" id="s3_1"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHbptQs2N4Wa_6G4DSlV-I2VGOcgD6y5agwwtespgK3qTqeC9qqvIZK8ucOA41j6v_uco0Q4kORTre6kUA4jFFiG9CoR-Hi1yIdvyI-nMDhqGKB7pIuWa-7JqGL0kwFJuuaOFglUhtr8BobbBE=s4800-w800-h600" alt="Batu Caves" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 1</span><span class="stop-cost-img sci-free">FREE Entry</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(92,184,138,.15);color:#7DDAA8">1</div><div class="stop-main"><div class="stop-meta"><span class="stime">7:30 – 10:00 AM</span><span class="tbadge tb-grn">🌄 EARLY = CRITICAL</span></div><div class="stop-name">Batu Caves</div><div class="stop-tag">FREE · 272 rainbow steps · Murugan statue · Monkeys · Jonas loves it</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Batu+Caves+Malaysia" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s3_1','conn_3_1_2')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">⛩️</span><div><div class="pb-name">Batu Caves — Malaysia's most iconic Hindu shrine</div><div class="pb-desc">Massive limestone hill with 272 colourful rainbow steps leading to the Temple Cave. The 42.7-metre golden Lord Murugan statue at the base is the world's tallest. Monkeys roam freely — hold your bags! Go before 9 AM to beat the heat and tour buses.</div></div></div></div>
+    <div class="igrid"><div class="icell"><div class="ilbl">Route</div><div class="ival">MRT to KL Sentral → KTM Komuter → Batu Caves · RM6.50/pax total</div></div><div class="icell"><div class="ilbl">Time · Distance</div><div class="ival">~50 min journey · 17 km from hotel</div></div></div>
+    <div class="btbox"><div class="btlbl">🌄 7:30 AM is Non-Negotiable</div><div class="bttxt">Cool air, golden light on the Murugan statue, nearly empty rainbow steps. By 10 AM it's 33°C+ with tour buses flooding in. You'll miss the magic entirely if you go late.</div></div></div></div></div></div>
+  <div class="connector" id="conn_3_1_2"><span class="cmode cm-grab">🚗 Grab</span><span class="cdist">Batu Caves → Geneve Watch · 0.8 km · ~5 min</span><span class="ccost">~RM6</span></div>
+
+  <div class="stop" id="s3_2"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNGBRuraWa1EOyoul6DcvaI_ta-jzMU8dFUNYEV6z9jZWD5rWOoOVM5GYFYcq077VvvI3rGNuLKt9RRc9-1QwQA_xp6nOomoNJBpEo6MJ-rDu8blGAuKLPGIi1sjcHXEcQJtUMwFoI1KI0BznA=s4800-w800-h600" alt="Geneve Watch" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 2</span><span class="stop-cost-img sci-free">Free Entry</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(212,168,64,.15);color:var(--gold2)">2</div><div class="stop-main"><div class="stop-meta"><span class="stime">10:15 – 11:15 AM</span><span class="tbadge tb-any">🛒 Shopping</span></div><div class="stop-name">Geneve Watch Outlet</div><div class="stop-tag">Budget watches + gifts · ⚠️ Not branded originals · Negotiate firmly</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Geneve+Timepiece+Batu+Caves+Malaysia" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s3_2','conn_3_2_3')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="tip"><b>⚠️ Not certified originals.</b> Good for RM30–200 budget gift watches. Beware of tout drivers getting commissions. Always negotiate — start at 40% of asking price.</div></div></div></div>
+  <div class="connector" id="conn_3_2_3"><span class="cmode cm-grab">🚗 Grab</span><span class="cdist">Batu Caves area → Thean Hou Temple · 14 km · ~25 min</span><span class="ccost">~RM18</span></div>
+
+  <div class="stop" id="s3_3"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFYF7e_wP1PVC5qPKjrKIwIgnJI0g9C2EL2tmAmRvVpCHC1juU1Mm7E07oy6thBs0u6Al30--g3zDsJQIQjyWRWGEZsbEznbLP_alkbDJBwUMNOBAFiRM0azIbQIQGFEp2isXnc3JnxRTad=s4800-w800-h600" alt="Thean Hou Temple" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 3</span><span class="stop-cost-img sci-free">FREE</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(232,144,74,.15);color:#F0B888">3</div><div class="stop-main"><div class="stop-meta"><span class="stime">12:00 – 1:30 PM</span><span class="tbadge tb-sst">🌅 Late Afternoon Ideal</span></div><div class="stop-name">Thean Hou Temple</div><div class="stop-tag">FREE · 6-tiered Chinese temple · Panoramic KL skyline · Marriage registry</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Thean+Hou+Temple+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s3_3','conn_3_3_4')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🏯</span><div><div class="pb-name">Thean Hou Temple</div><div class="pb-desc">One of Southeast Asia's largest Chinese temples, dedicated to three sea goddesses. Six-tiered pagoda-style building set on Robson Heights with sweeping views of the KL skyline. Often has couples registering marriages in traditional costume — great photos!</div></div></div></div></div></div></div>
+  <div class="connector" id="conn_3_3_4"><span class="cmode cm-grab">🚗 Grab</span><span class="cdist">Thean Hou → Chocolate Factory · 6 km · ~12 min</span><span class="ccost">~RM12</span></div>
+
+  <div class="stop" id="s3_4"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHLOdSXGge_nh0S2g8CEoiz8RljvsNXyomkFVRLCtBAzaSjLr8xBLu_EpaRfFPsACvE3IkeLFMlYiApgwzJlfwPhyAirvJLY_DvzKaER91Yvv6MRmEypVXYIqFzn1-fYtW6K9Yvz34XRPCzSQ=s4800-w800-h600" alt="Chocolate Factory" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 4</span><span class="stop-cost-img sci-free">Free + Samples</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(212,168,64,.15);color:var(--gold2)">4</div><div class="stop-main"><div class="stop-meta"><span class="stime">2:30 – 3:30 PM</span><span class="tbadge tb-any">🍫 Closes 5:30 PM</span></div><div class="stop-name">Belice Chocolate Factory</div><div class="stop-tag">FREE samples · Durian choc · Buy 4 get 1 · Jonas heaven · Closes 5:30 PM</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Belice+Chocolate+Kingdom+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s3_4','conn_3_4_5')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="tip"><b>💡</b> Durian chocolate, chili chocolate, Malaysian fruit flavours — incredible free samples. Budget RM100–150 for group gifts. Buy 4 get 1 deal usually running.</div></div></div></div>
+  <div class="connector" id="conn_3_4_5"><span class="cmode cm-grab">🚗 Grab</span><span class="cdist">Chocolate Factory → KL Tower · 2.5 km · ~8 min</span><span class="ccost">~RM10</span></div>
+
+  <div class="stop" id="s3_5"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNGeSUXNDNu8VpIA8krFD8Fmba8dNwOUlRf9XixhCDDw0O8U6pQw-_E4L4rmtW_Ab_FmJwAd7UIPg806O1GppSCPW_f4Py6b0oXzR1jAN9ZJwakb3J-jXXkO2cApd6lUkROQmo0cE5vy1wRZr3s=s4800-w800-h600" alt="KL Tower" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 5</span><span class="stop-cost-img sci-paid">Combo RM55</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(212,168,64,.15);color:var(--gold2)">5</div><div class="stop-main"><div class="stop-meta"><span class="stime">4:30 – 7:30 PM</span><span class="tbadge tb-gold">🌅 SUNSET WINDOW</span></div><div class="stop-name">KL Tower (Menara KL)</div><div class="stop-tag">360° panorama · Open-air Sky Terrace · Watch city go from day to night</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Menara+KL+Tower+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s3_5','conn_3_5_6')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">📡</span><div><div class="pb-name">Menara KL — 421 metres</div><div class="pb-desc">The 7th tallest telecommunications tower in the world. Two viewing options: enclosed Observation Deck (RM30) and open-air Sky Terrace (RM50). Combo RM55 — best value. Book at kltower.com.my or Klook.</div></div></div></div>
+    <div class="btbox"><div class="btlbl">🌅 5:30–7:30 PM = Magic Window</div><div class="bttxt">Arrive with blue sky → watch golden hour → see city light up at night. You witness KL transform from day to night in one visit. Sky Terrace at sunset is unmissable.</div></div></div></div></div>
+  <div class="connector" id="conn_3_5_6"><span class="cmode cm-walk">🚶 Walk</span><span class="cdist">KL Tower → Pavilion KL · 1.2 km · ~15 min downhill</span><span class="ccost">FREE</span></div>
+
+  <div class="stop" id="s3_6"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNGUy2c7lvSJVcXUcp8v8xex39bMMlWkmcdfLS6U_4nxtY_HOp5psuLJEymMibJeL8lVOGvW3G_Alzdm-y68vZYqsEevM01yzjTEco0zVHxGQKdPYoC0WM1eDycqAs5yfO-ZL0t49h2ijkXbLg=s4800-w800-h432" alt="Pavilion KL" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 6</span><span class="stop-cost-img sci-free">Free Entry</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(74,158,232,.15);color:#80C0F0">6</div><div class="stop-main"><div class="stop-meta"><span class="stime">8:00 – 10:00 PM</span><span class="tbadge tb-ngt">🌙 Evening Dining</span></div><div class="stop-name">Pavilion KL + Bukit Bintang</div><div class="stop-tag">Premier mall · Tokyo Street · Halal dining · Crystal Fountain</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Pavilion+Kuala+Lumpur+Bukit+Bintang" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s3_6','')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="tip"><b>Return:</b> LRT Bukit Bintang → Chan Sow Lin · 2 stops · RM2.80.</div></div></div></div>
+</div>
+
+<!-- ───────── DAY 4 ───────── -->
+<div class="day-panel" id="dp-3">
+  <div class="day-hdr">
+    <div><div class="dhdr-title">Genting Highlands + Chin Swee Temple</div><div class="dhdr-date">Tuesday, 14 April 2026</div></div>
+    <div class="dhdr-theme">🏔️ Mountain Day<br>Bring jackets! 15–25°C</div>
+  </div>
+  <div class="day-sum">
+    <div class="si"><div class="si-lbl">Stops</div><div class="si-val">2 main</div></div>
+    <div class="si"><div class="si-lbl">To Genting</div><div class="si-val">~55 km</div></div>
+    <div class="si"><div class="si-lbl">Bus Return</div><div class="si-val">~RM10/pax</div></div>
+    <div class="si"><div class="si-lbl">Theme Park</div><div class="si-val">RM145–180</div></div>
+  </div>
+
+  <div class="stop" id="s4_1"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHN-lKO6g4EycAMeV7NdnAav91jg-03Hpjj89UKyd1q350QZLVtBiX4btZduTEwzlOteN2HIGKt_ShHac4Fq7ZSI164RaFFgUH0VjsnsZdj8c860C9EVk0SAqlxlhz658Emv3aE7ZRmTRYs25ZjsXkCxQ=s4800-w800-h600" alt="Genting Highlands" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 1</span><span class="stop-cost-img sci-paid">RM145–180</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(74,158,232,.15);color:#80C0F0">1</div><div class="stop-main"><div class="stop-meta"><span class="stime">8:00 AM – 3:00 PM</span><span class="tbadge tb-grn">☀️ Full Day · Tuesday Least Queues</span></div><div class="stop-name">Genting Highlands / Resorts World</div><div class="stop-tag">Indoor + outdoor theme park · Cool 15–25°C · Book tickets via Klook</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Resorts+World+Genting+Malaysia" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s4_1','conn_4_1_2')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🎢</span><div><div class="pb-name">Resorts World Genting — 1,800m altitude</div><div class="pb-desc">Malaysia's mountain resort with indoor and outdoor theme parks, hotels, shopping and entertainment. The cool 15–25°C air is a welcome relief from KL's heat. Tuesday = weekday, shortest queues. Jonas will be thrilled.</div></div></div></div>
+    <div class="igrid"><div class="icell"><div class="ilbl">How to Get There</div><div class="ival">Grab to Hentian Pudu (RM10) → Genting Express Bus every 30 min → RM10/pax · 1 hr ride</div></div><div class="icell"><div class="ilbl">Book</div><div class="ival">rwgenting.com or Klook — saves RM20–30/ticket. Group of 7 saves ~RM200</div></div></div></div></div></div>
+  <div class="connector" id="conn_4_1_2"><span class="cmode cm-cable">🚡 Awana SkyWay</span><span class="cdist">Genting Peak → Chin Swee · 3 km cable car · ~15 min · FREE stop</span><span class="ccost">FREE on SkyWay ticket</span></div>
+
+  <div class="stop" id="s4_2"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHUMThZpWSnlL33orvXa0UdUhXF93MpCe_r_wlmve-6REEdSj0kmImC1gZADQDY4y08EIWf6RSg3gLYUzOe_mb6tcFRMqS-Co2HtlesVRU5_5kJ-OgJGPcVRJurXDO=s4800-w800-h600" alt="Chin Swee Temple" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 2</span><span class="stop-cost-img sci-free">FREE stop</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(152,120,216,.15);color:#C0A8F0">2</div><div class="stop-main"><div class="stop-meta"><span class="stime">3:00 – 5:00 PM</span><span class="tbadge tb-gold">🌅 Afternoon Mist</span></div><div class="stop-name">Chin Swee Caves Temple</div><div class="stop-tag">FREE cable car stop · 9-storey pagoda · Ten Chambers of Hell · Misty mountain</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Chin+Swee+Caves+Temple+Genting" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s4_2','')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">⛅</span><div><div class="pb-name">Chin Swee Caves Temple</div><div class="pb-desc">Buddhist temple perched on the misty Genting mountainside, accessible via a FREE stop on the Awana SkyWay cable car. Features a 9-storey pagoda, dramatic mountain views, and the fascinating "Ten Chambers of Hell" diorama exhibit. Do this on the way down from Genting.</div></div></div></div>
+    <div class="btbox"><div class="btlbl">🌅 Afternoon Mist = Mystical</div><div class="bttxt">Genting's afternoon mist rolls in 2–4 PM. The temple literally emerges from clouds. Statues look surreal and otherworldly — the most dramatic photos happen in this mist window.</div></div></div></div></div>
+</div>
+
+<!-- ───────── DAY 5 ───────── -->
+<div class="day-panel" id="dp-4">
+  <div class="day-hdr">
+    <div><div class="dhdr-title">King's Palace + Putrajaya + Departure</div><div class="dhdr-date">Wednesday, 15 April 2026</div></div>
+    <div class="dhdr-theme">Checkout 11 AM<br>✈️ Flight 22:25 KUL</div>
+  </div>
+  <div class="day-sum">
+    <div class="si"><div class="si-lbl">Stops</div><div class="si-val">4</div></div>
+    <div class="si"><div class="si-lbl">Distance</div><div class="si-val">~70 km</div></div>
+    <div class="si"><div class="si-lbl">Transport</div><div class="si-val">~RM65/pax</div></div>
+    <div class="si"><div class="si-lbl">Checkout</div><div class="si-val">11 AM</div></div>
+  </div>
+  <div class="alert aw"><span class="ai-ico">⚠️</span><div class="ai-body"><div class="ai-ttl">Istana Negara CLOSED Sat–Sun — Wednesday is perfect! Store bags at Trion concierge (FREE) after checkout.</div></div></div>
+
+  <div class="stop" id="s5_1"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFuh11WStFkhVG3aEakVAJIqyujPFoktcqCQziNZAw11IcHPk9uuGbzv93cb6rIiRgQNdw01-WKeW0RBnd2vtwFyYAzM3UnQFhdHqWksgf3J1oCuNQissOsRbCTfzunlKIfuJmAmvCsgYS795I=s4800-w800-h600" alt="Istana Negara" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 1</span><span class="stop-cost-img sci-free">FREE</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(212,168,64,.15);color:var(--gold2)">1</div><div class="stop-main"><div class="stop-meta"><span class="stime">8:30 – 9:15 AM</span><span class="tbadge tb-grn">☀️ Before Checkout</span></div><div class="stop-name">Istana Negara (King's Palace)</div><div class="stop-tag">Gate view only · Royal Guards from 8 AM · ⚠️ CLOSED SAT–SUN</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Istana+Negara+Kuala+Lumpur" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s5_1','conn_5_1_2')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">👑</span><div><div class="pb-name">Istana Negara — Official Royal Palace</div><div class="pb-desc">The official residence of the Yang di-Pertuan Agong (King of Malaysia). Grand white gates with ceremonial guards. Visitors can view from the exterior gates only — no entry inside. 15–20 min visit. Closed weekends.</div></div></div></div></div></div></div>
+  <div class="connector" id="conn_5_1_2"><span class="cmode cm-mrt">🚇 MRT</span><span class="cdist">Grab to KL Sentral → MRT Putrajaya Line · ~40 min total</span><span class="ccost">RM17/pax</span></div>
+
+  <div class="stop" id="s5_2"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFHZRDhwgfvm3p_902xibr7eC4jhjYV_N_MR0DiEicR3D8p-TejCdqhlVX2-_yqsNjmoSjRMi-hXvl_4dOSXx6khVcX9lm-LJ7F-9Dx8SBS8y3Iaa68YiGv2W2AqzyKqRF0warrY8k0Lbw0pPqeH2qYzITS9LQx1ej0Wv4byPv_oGYxFMCQVHsfRD3A=s4800-w800-h600" alt="Iron Mosque Putrajaya" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 2</span><span class="stop-cost-img sci-free">FREE</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(74,158,232,.15);color:#80C0F0">2</div><div class="stop-main"><div class="stop-meta"><span class="stime">10:00 – 11:30 AM</span><span class="tbadge tb-grn">☀️ Steel Sparkles Morning</span></div><div class="stop-name">Tuanku Mizan Mosque (Iron Mosque), Putrajaya</div><div class="stop-tag">FREE · 70% stainless steel · Futuristic design · Lakeside views</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Masjid+Tuanku+Mizan+Zainal+Abidin+Putrajaya" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s5_2','conn_5_2_3')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🏗️</span><div><div class="pb-name">Masjid Tuanku Mizan Zainal Abidin</div><div class="pb-desc">The "Iron Mosque" — 70% stainless steel exterior creating a futuristic, almost spaceship-like silhouette against Putrajaya Lake. Open-air concept with natural ventilation and Gas District Cooling. Rated 4.8 on Google — one of Malaysia's most beautiful modern mosques.</div></div></div></div>
+    <div class="btbox"><div class="btlbl">☀️ Morning = Steel Glitters</div><div class="bttxt">The steel exterior sparkles brilliantly in morning sunlight with clear blue sky backdrop. By afternoon, glare can be harsh. 9–11 AM is peak beauty.</div></div></div></div></div>
+  <div class="connector" id="conn_5_2_3"><span class="cmode cm-grab">🚗 Grab</span><span class="cdist">Iron Mosque → Taman Botani Putrajaya · 4 km · ~8 min</span><span class="ccost">~RM10</span></div>
+
+  <div class="stop" id="s5_3"><div class="stop-img-wrap"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFuWiq9ALM-iS6A4iR1Kaa4rOBeQhB9r62Pcf_nAPA4Ya1oCQfxR87giZ45InlAqn6Dnu1f-cBcGLkal_ub3eO7r7nMrghuuf--ASnheK7fvPQBgsP6zvPSQU65ejs1qOwjcORLnrc44HKcg=s4800-w800-h600" alt="Taman Botani Putrajaya" onerror="this.parentElement.style.display='none'"><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">STOP 3</span><span class="stop-cost-img sci-free">FREE</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(92,184,138,.15);color:#7DDAA8">3</div><div class="stop-main"><div class="stop-meta"><span class="stime">12:00 – 1:30 PM</span><span class="tbadge tb-grn">☀️ Morning Garden</span></div><div class="stop-name">Taman Botani Putrajaya</div><div class="stop-tag">FREE · Moroccan pavilion · Lake views · Café for last lunch</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Taman+Botani+Putrajaya+Malaysia" target="_blank">↗ Google Maps</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button><button class="act-btn btn-skip" onclick="skipStop(this,'s5_3','conn_5_3_4')">Skip</button></div>
+    <div class="stop-body"><div class="sbi"><div class="place-brief"><div class="pb-row"><span class="pb-emo">🌿</span><div><div class="pb-name">Taman Botani Putrajaya</div><div class="pb-desc">Vast botanical garden along the Putrajaya Lake shore. The Moroccan Pavilion is the most photographed spot — ornate Islamic architecture amid lush greenery. Deer sanctuary, lakeside promenade, and an on-site café for your last KL lunch.</div></div></div></div><div class="tip"><b>💡 Last meal tip:</b> Café inside the park. Ask Grab to drop at Moroccan Pavilion entrance directly.</div></div></div></div>
+  <div class="connector" id="conn_5_3_4"><span class="cmode cm-mrt">🚇 MRT</span><span class="cdist">Putrajaya Sentral → KL Sentral · 30 km · ~35 min</span><span class="ccost">RM5/pax</span></div>
+
+  <div class="stop" id="s5_4"><div class="stop-img-wrap"><div style="height:100px;background:linear-gradient(135deg,#141422,#1a1a2c);display:flex;align-items:center;justify-content:center;font-size:36px">✈️</div><div class="stop-img-overlay"></div><div class="stop-img-label"><span class="stop-number">FINAL STOP</span><span class="stop-cost-img sci-paid">KLIA Ekspres RM55</span></div></div>
+    <div class="stop-inner"><div class="stop-hdr" onclick="toggleStop(this.parentElement.parentElement)"><div class="stop-num-circle" style="background:rgba(232,85,80,.15);color:#F09090">4</div><div class="stop-main"><div class="stop-meta"><span class="stime">3:00 – 7:00 PM → Airport</span><span class="tbadge tb-any">🛍️ Last Shopping</span></div><div class="stop-name">Last Shopping + Airport Transfer</div><div class="stop-tag">Collect bags Trion 5:30 PM → KL Sentral → KLIA Ekspres → KLIA2 by 7:45 PM</div></div></div>
+    <div class="stop-actions"><a class="act-btn btn-map" href="https://www.google.com/maps/search/?api=1&query=KL+Sentral+Kuala+Lumpur" target="_blank">↗ Google Maps KL Sentral</a><button class="act-btn btn-expand" onclick="toggleStop(this.closest('.stop'))">Details</button></div>
+    <div class="stop-body"><div class="sbi"><div class="igrid"><div class="icell"><div class="ilbl">Leave Trion</div><div class="ival">7:00 PM → KL Sentral 7:15 PM → KLIA2 by 7:45 PM</div></div><div class="icell"><div class="ilbl">Flight</div><div class="ival">AirAsia AK37 · KUL 22:25 → COK 23:55</div></div></div><div class="tip"><b>✅ Online check-in</b> opens Apr 1 (14 days before). Do it immediately for 7 seats together. Bag drop closes 60 min before (9:25 PM). Terminal 2 KLIA2.</div></div></div></div>
+</div>
+</div><!-- /pg-itin -->
+
+<!-- ═══════════════ ARRIVAL ═══════════════ -->
+<div class="page" id="pg-arrival">
+  <div class="sec-eye">Day 1 · Saturday 11 April</div><div class="sec-ttl">Arrival Morning Plan</div>
+  <div class="alert aw"><span class="ai-ico">⚠️</span><div class="ai-body"><div class="ai-ttl">Check-in 3 PM — 7.5 hrs gap from landing</div>Store bags at KL Sentral · Freshen up · Explore Little India + KLCC · Check in at 3 PM sharp.</div></div>
+  <div class="alert ag"><span class="ai-ico">💡</span><div class="ai-body"><div class="ai-ttl">Call Trion @ KL tonight from Kerala — ask for early check-in!</div>Many serviced apartments allow 1–2 PM on Saturdays. Worst they say is no. WhatsApp: +60 13-899 8999</div></div>
+  <div class="tl">
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">7:20 AM — Land KLIA2</div><div class="tli-text">Family lane for Jonas. Buy <b>Touch 'n Go cards</b> at 7-Eleven (RM10 card + RM50 top-up each). Water + snacks.</div><div class="tli-sub">⏱ Allow 45–60 min immigration + baggage with 7 people</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">8:15 AM — KLIA Ekspres to KL Sentral</div><div class="tli-text">RM55/adult · RM25/child · 28 min. Departs every 30 min from inside KLIA2 terminal.</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">8:45 AM — Store all bags at Dr. Locker, KL Sentral Level 2</div><div class="tli-text">Large locker RM55 (fits 2 x 28" bags). Small RM25. Staff on site. <b>ONE-TIME open/close</b> — don't close door until everything is inside.</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">9:00 AM — Walk to Little India (Brickfields)</div><div class="tli-text">0.6 km from KL Sentral. Authentic <b>roti canai + teh tarik breakfast for RM4–6/person</b>. Colourful arches, spice shops, flower garlands, Indian music. Jonas will love the energy.</div><div class="tli-sub">💡 Best Indian quarter in KL — walk the main street of Jalan Tun Sambanthan</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">9:45 AM — Freshen Up</div><div class="tli-text">Option A: <b>Fitness First KLCC</b> day pass ~RM30 (shower, lockers, towels). Option B: <b>Days Hotel Chan Sow Lin</b> day-use room ~RM150–180 for 2 rooms (book ahead from India). See Freshen Up tab.</div><div class="tli-sub">💡 Pack 1 change of clothes + toiletries in carry-on for this moment</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">11:00 AM – 2:30 PM — KLCC</div><div class="tli-text">MRT to KLCC. Aquaria KLCC → lunch at Suria KLCC food court → KLCC Park. Bag-free and comfortable.</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">2:30 PM — Collect bags & head to Trion</div><div class="tli-text">MRT back or Grab XL from KL Sentral with all bags (RM25–35 for 7 pax + bags).</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">3:00 PM — Check-in at Trion @ KL 🎉</div><div class="tli-text">Drop bags, proper shower, rest 30 min. Then MRT back to KLCC for Petronas Towers at 5 PM!</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ LUGGAGE ═══════════════ -->
+<div class="page" id="pg-luggage">
+  <div class="sec-eye">Storage Guide</div><div class="sec-ttl">Luggage Options</div>
+  <div class="alert ai"><span class="ai-ico">ℹ️</span><div class="ai-body">Day 1: Store at KL Sentral on arrival. Day 5: Leave with Trion concierge after 11 AM checkout — your flight isn't until 22:25, you have 11 hours!</div></div>
+  <div class="card open"><div class="card-hdr" onclick="this.parentElement.classList.toggle('open')"><div class="card-ico" style="background:rgba(56,201,184,.1)">🔐</div><div class="card-txt"><div class="card-name">Dr. Locker — KL Sentral Level 2</div><div class="card-sub">Open 24 hrs · Best for Day 1 arrival · Staff on site</div></div><span class="c-badge cbt">⭐ Day 1 Best</span></div>
+  <div class="card-body"><div class="cbi"><div class="igrid"><div class="icell"><div class="ilbl">Large Locker</div><div class="ival">RM55 · Fits 2×28" bags + backpacks</div></div><div class="icell"><div class="ilbl">Small Locker</div><div class="ival">RM25 · Fits carry-on + small bag</div></div></div><div class="tip"><b>💡 For 7 people:</b> 2 large (RM110) + 1–2 small (RM25–50) = ~RM135–160 total. ONE-TIME open/close — don't close door until everything's inside! Large lockers go fast — grab them right after exiting the KLIA Ekspres.</div></div></div></div>
+  <div class="card"><div class="card-hdr" onclick="this.parentElement.classList.toggle('open')"><div class="card-ico" style="background:rgba(212,168,64,.1)">🏨</div><div class="card-txt"><div class="card-name">Trion @ KL Concierge</div><div class="card-sub">Your own building · FREE · Perfect for Day 5 checkout</div></div><span class="c-badge cbo">FREE</span></div>
+  <div class="card-body"><div class="cbi"><div class="tip"><b>💡 Day 5 Plan:</b> Checkout 11 AM → ask concierge to store all bags → explore Putrajaya + last shopping → collect 6:30 PM → airport by 7 PM. Standard at all serviced apartments. WhatsApp them: +60 13-899 8999</div></div></div></div>
+  <div class="card"><div class="card-hdr" onclick="this.parentElement.classList.toggle('open')"><div class="card-ico" style="background:rgba(92,184,138,.1)">🎒</div><div class="card-txt"><div class="card-name">Pack the "Day 1 Bag"</div><div class="card-sub">One carry-on with everything you need Day 1 morning</div></div><span class="c-badge cbg">Must Do</span></div>
+  <div class="card-body"><div class="cbi"><div class="igrid"><div class="icell"><div class="ilbl">Pack Inside</div><div class="ival">Change of clothes for all · Toiletries · Sunscreen · Wet wipes · Jonas essentials</div></div><div class="icell"><div class="ilbl">Strategy</div><div class="ival">Big bags → locker · This bag stays WITH you all morning until 3 PM check-in</div></div></div></div></div></div>
+</div>
+
+<!-- ═══════════════ FRESHEN UP ═══════════════ -->
+<div class="page" id="pg-freshup">
+  <div class="sec-eye">Day 1 · 7:20 AM – 3:00 PM</div><div class="sec-ttl">Freshen Up Options</div>
+  <div class="alert ag"><span class="ai-ico">🌙</span><div class="ai-body"><div class="ai-ttl">Overnight 4h 20min economy flight — everyone needs a proper wash</div>Options below from most comfortable to budget. Book option A or B from India in advance.</div></div>
+  <div class="card open"><div class="card-hdr" onclick="this.parentElement.classList.toggle('open')"><div class="card-ico" style="background:rgba(92,184,138,.12)">🏨</div><div class="card-txt"><div class="card-name">Days Hotel Chan Sow Lin — Day-Use Room</div><div class="card-sub">1 km from Trion · Jonas can nap properly · Book ahead</div></div><span class="c-badge cbg">⭐ Most Comfortable</span></div>
+  <div class="card-body"><div class="cbi"><div class="igrid"><div class="icell"><div class="ilbl">Cost</div><div class="ival">~RM80–120/room · Book 2 rooms = RM150–200 for group</div></div><div class="icell"><div class="ilbl">Book Via</div><div class="ival">dayuse.com or Agoda Day Use · Book from India before travel</div></div></div><div class="tip"><b>💡 Best for families:</b> Jonas naps in proper bed after the flight. Full bathroom. RM150–200 ÷ 7 people = RM25/person — absolutely worth it.</div></div></div></div>
+  <div class="card"><div class="card-hdr" onclick="this.parentElement.classList.toggle('open')"><div class="card-ico" style="background:rgba(212,168,64,.1)">💪</div><div class="card-txt"><div class="card-name">Fitness First KLCC — Day Pass</div><div class="card-sub">Private shower cubicles · Towels · Hair dryers · Near KLCC MRT</div></div><span class="c-badge cbo">Good Option</span></div>
+  <div class="card-body"><div class="cbi"><div class="igrid"><div class="icell"><div class="ilbl">Cost</div><div class="ival">~RM25–45/adult · Kids often free with parent</div></div><div class="icell"><div class="ilbl">Location</div><div class="ival">Suria KLCC Level 3 · Opens 6 AM weekdays</div></div></div><div class="tip"><b>💡 How:</b> MRT from KL Sentral → KLCC. Level 3 in Suria mall. Private shower cubicles (parent + Jonas can share family cubicle). ~45 min total for group. Clean, A/C, lockers.</div></div></div></div>
+  <div class="alert ai" style="margin-top:8px"><span class="ai-ico">✅</span><div class="ai-body"><div class="ai-ttl">Recommended: Days Hotel day-use → Little India breakfast → KLCC</div>Land → KL Sentral (bags) → Days Hotel (2 rooms, freshen properly) → Little India roti canai → MRT to KLCC. Cost ~RM25/person. Start the day completely fresh!</div></div>
+</div>
+
+<!-- ═══════════════ CHECKOUT ═══════════════ -->
+<div class="page" id="pg-checkout">
+  <div class="sec-eye">Day 5 · Wednesday 15 April</div><div class="sec-ttl">Checkout Day Timeline</div>
+  <div class="alert aw"><span class="ai-ico">⚠️</span><div class="ai-body"><div class="ai-ttl">Checkout 11 AM · Flight 22:25 · 11.5 hr gap — use it!</div>Don't rush to airport. Store bags FREE at Trion concierge and enjoy a full last day.</div></div>
+  <div class="tl">
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">8:00 AM — Final packing</div><div class="tli-text">Last room check — passports, chargers, medication, all souvenirs packed.</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">11:00 AM — Checkout + Bag storage</div><div class="tli-text">Hand in keys. <b>Ask concierge to keep all bags</b> until 6:30 PM. Get a receipt/tag for each bag. You're free!</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">11:30 AM – 2:00 PM — Putrajaya</div><div class="tli-text">MRT Chan Sow Lin → Putrajaya (35 min, RM5). Iron Mosque + Botanical Gardens. Last proper lunch at park café.</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">2:30 – 5:30 PM — Last Shopping</div><div class="tli-text">MRT back to KL. Final Pavilion / Bukit Bintang round. Chocolate Factory closes 5:30 PM — last chance for gifts!</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">5:30 PM — Collect bags at Trion</div><div class="tli-text">MRT to Chan Sow Lin. Collect all bags from concierge. Quick snack nearby. Reorganise — pack new purchases safely.</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">6:45 PM — Head to airport</div><div class="tli-text">Grab XL/Van to KL Sentral (RM25–35 for 7 + bags). KLIA Ekspres departs KL Sentral → KLIA2 in 28 min. RM55/adult · RM25/child.</div><div class="tli-sub">✅ Arrive KLIA2 by 7:15 PM — 3 hrs 10 min before departure. Perfect.</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-time">7:15 PM — KLIA2</div><div class="tli-text">Bag drop, security, immigration, duty-free. Board gate by 9:45 PM.</div><div class="tli-sub">🛫 AirAsia AK37 · KUL 22:25 → COK 23:55</div></div>
+  </div>
+  <div class="alert ag"><span class="ai-ico">📱</span><div class="ai-body"><div class="ai-ttl">AirAsia Online Check-in opens April 1st (14 days before)</div>Do it the moment it opens to secure 7 seats together. Saves queuing at the airport counter. AK37 departs Apr 15 22:25.</div></div>
+</div>
+
+<!-- ═══════════════ FOOD ═══════════════ -->
+<div class="page" id="pg-food">
+  <div class="sec-eye">Malaysian Food Bible</div><div class="sec-ttl">Must-Try Dishes</div>
+  <div class="alert ag"><span class="ai-ico">🍽️</span><div class="ai-body">Budget RM200–250/day for all 7. Hawker stall: RM8–15/person. Restaurant: RM20–35. KL is incredibly affordable!</div></div>
+
+  <div class="food"><div class="food-top"><div class="food-emo" style="background:rgba(92,184,138,.1)">🍚</div><div class="food-info"><div class="food-name">Nasi Lemak</div><div class="food-sub">Malaysia's national dish — eaten morning to midnight</div><div class="food-desc">Fragrant coconut rice with crispy anchovies, peanuts, half-boiled egg, cucumber and fiery sambal. Topped with rendang chicken, beef curry or fried fish. Rich, aromatic, deeply satisfying.</div><div class="food-tags"><span class="ftag ft-hal">✓ Halal</span><span class="ftag ft-must">⭐ National Dish</span><span class="ftag ft-kids">👦 Jonas-friendly</span><span class="ftag ft-cheap">💰 RM5–15</span></div></div></div>
+  <div class="food-where"><div class="fw-lbl">Best Spots</div><div class="fwr"><span class="fw-name">Nasi Lemak Wanjo — Kampung Baru</span><span class="fw-det">6AM–midnight · RM8–13</span></div><div class="fwr"><span class="fw-name">NALE The Nasi Lemak Co — Mid Valley</span><span class="fw-det">10AM–10PM · RM15–20 · Elevated</span></div><div class="fwr"><span class="fw-name">Morning hawkers near Trion @ KL</span><span class="fw-det">6–10AM · RM4–6 · Most authentic</span></div></div></div>
+
+  <div class="food"><div class="food-top"><div class="food-emo" style="background:rgba(212,168,64,.1)">🫓</div><div class="food-info"><div class="food-name">Roti Canai</div><div class="food-sub">Best breakfast in Southeast Asia — RM2 masterpiece</div><div class="food-desc">Flaky crispy-layered flatbread served with dhal and curry. The <b>Roti Tsunami</b> drowns it in curry with two soft eggs. Jonas will demolish this every morning.</div><div class="food-tags"><span class="ftag ft-hal">✓ Halal</span><span class="ftag ft-must">⭐ Every Morning</span><span class="ftag ft-kids">👦 Jonas loves it</span><span class="ftag ft-cheap">💰 RM2–6</span></div></div></div>
+  <div class="food-where"><div class="fw-lbl">Best</div><div class="fwr"><span class="fw-name">Any mamak in Brickfields/Little India</span><span class="fw-det">6–11AM · RM2–4 · Freshest</span></div><div class="fwr"><span class="fw-name">Karim Roti Canai — Chow Kit</span><span class="fw-det">6AM–3PM · RM2–5 · Legendary</span></div></div></div>
+
+  <div class="food"><div class="food-top"><div class="food-emo" style="background:rgba(232,85,80,.09)">👑</div><div class="food-info"><div class="food-name">Durian (MSW)</div><div class="food-sub">King of Fruits — April is PEAK season!</div><div class="food-desc">Malaysia's <b>Mao Shan Wang (MSW)</b> variety — small seeds, thick creamy flesh, bittersweet flavour. Try at A/C shops in Petaling Street. Start local → MSW. Let Jonas try!</div><div class="food-tags"><span class="ftag ft-hal">✓ Halal</span><span class="ftag ft-must">⭐ Peak Season April</span><span class="ftag ft-kids">👦 Let Jonas try!</span><span class="ftag" style="background:rgba(232,85,80,.09);color:#F09090">⚠️ Strong smell</span></div></div></div>
+  <div class="food-where"><div class="fw-lbl">Best (Day 2 — Chinatown area)</div><div class="fwr"><span class="fw-name">Dury Dury — Jalan Sultan, Petaling St</span><span class="fw-det">10:30AM–10:30PM · ⭐ 4.9 · MSW platter RM50–80</span></div><div class="fwr"><span class="fw-name">MyBolehBoleh — Jalan Sultan (nearby)</span><span class="fw-det">11AM–11PM · A/C · Staff guide you</span></div></div></div>
+
+  <div class="food"><div class="food-top"><div class="food-emo" style="background:rgba(232,200,112,.1)">🥭</div><div class="food-info"><div class="food-name">Mango Sticky Rice + Coconut Ice Cream</div><div class="food-sub">Thai-style — Jonas's favourite guaranteed!</div><div class="food-desc">Glutinous rice soaked in coconut milk with ripe mango. The coconut ice cream with biscuit toppings at Jalan Alor is legendary. Not spicy at all.</div><div class="food-tags"><span class="ftag ft-hal">✓ Halal</span><span class="ftag ft-must">⭐ Must on Day 2</span><span class="ftag ft-kids">👦 Jonas TOP pick</span><span class="ftag ft-cheap">💰 RM12–18</span></div></div></div>
+  <div class="food-where"><div class="fw-lbl">Where</div><div class="fwr"><span class="fw-name">ITS Thai Street Dessert — Jalan Alor</span><span class="fw-det">6PM–1AM · RM12–15 · ⭐ 4.7</span></div></div></div>
+
+  <div class="food"><div class="food-top"><div class="food-emo" style="background:rgba(56,201,184,.08)">🍜</div><div class="food-info"><div class="food-name">Char Kway Teow</div><div class="food-sub">Smoky stir-fried flat rice noodles — "wok hei" magic</div><div class="food-desc">Wide flat noodles stir-fried in a blazing wok with prawns, cockles, bean sprouts, egg. The smoky char from the wok is irreplaceable. Order with Milo Ais drink.</div><div class="food-tags"><span class="ftag ft-hal">✓ Halal versions avail</span><span class="ftag ft-must">⭐ Iconic KL</span><span class="ftag ft-cheap">💰 RM9–14</span></div></div></div>
+  <div class="food-where"><div class="fw-lbl">Where</div><div class="fwr"><span class="fw-name">Jalan Alor — multiple wok stalls</span><span class="fw-det">Evening · RM9–12</span></div></div></div>
+
+  <div class="food"><div class="food-top"><div class="food-emo" style="background:rgba(212,168,64,.1)">🧋</div><div class="food-info"><div class="food-name">Teh Tarik + Malaysian Drinks</div><div class="food-sub">The unofficial national drink — drink it every day</div><div class="food-desc">Strong tea blended with condensed milk, dramatically poured between vessels to create creamy froth. Also try: <b>Milo Ais</b> (Jonas will live on this), <b>Cendol</b> (shaved ice + coconut milk), <b>fresh coconut water</b>.</div><div class="food-tags"><span class="ftag ft-hal">✓ Halal</span><span class="ftag ft-must">⭐ Daily Essential</span><span class="ftag ft-kids">👦 Milo Ais for Jonas!</span><span class="ftag ft-cheap">💰 RM2–5</span></div></div></div>
+  <div class="food-where"><div class="fw-lbl">Where</div><div class="fwr"><span class="fw-name">Every mamak restaurant in KL (literally everywhere)</span><span class="fw-det">6AM–late · RM2–3</span></div></div></div>
+
+  <div class="food"><div class="food-top"><div class="food-emo" style="background:rgba(232,144,74,.1)">🍢</div><div class="food-info"><div class="food-name">Satay</div><div class="food-sub">Charcoal-grilled skewers with peanut sauce</div><div class="food-desc">Chicken or beef skewers over charcoal, served with rich peanut sauce and ketupat rice cakes. Order 20+ sticks for 7 people — only RM30–35 total!</div><div class="food-tags"><span class="ftag ft-hal">✓ Halal</span><span class="ftag ft-must">⭐ Must Try</span><span class="ftag ft-kids">👦 Jonas approved</span><span class="ftag ft-cheap">💰 RM1.50–2.50/stick</span></div></div></div>
+  <div class="food-where"><div class="fw-lbl">Where</div><div class="fwr"><span class="fw-name">Jalan Alor — satay stalls everywhere</span><span class="fw-det">Evening from 7PM · RM1.50–2.50/stick</span></div></div></div>
+
+  <div class="card" style="cursor:default"><div class="card-body" style="display:block"><div class="cbi">
+    <div class="sec-eye">Daily Budget</div>
+    <table class="tbl"><tr><th>Meal</th><th>Hawker</th><th>Restaurant</th></tr><tr><td>Breakfast ×7</td><td class="tc-g">RM25–35</td><td class="tc-o">RM50–70</td></tr><tr><td>Lunch ×7</td><td class="tc-g">RM60–90</td><td class="tc-o">RM100–140</td></tr><tr><td>Dinner ×7</td><td class="tc-g">RM100–140</td><td class="tc-o">RM150–200</td></tr><tr><td>Snacks/drinks</td><td class="tc-g">RM30–50</td><td class="tc-o">RM50–80</td></tr><tr><td><b>Total/day (7 pax)</b></td><td class="tc-g"><b>RM215–315</b></td><td class="tc-o"><b>RM350–490</b></td></tr></table>
+    <div class="tip" style="margin-top:9px"><b>💡 Best strategy:</b> Hawker breakfast + hawker lunch (RM5–12/person). ONE proper dinner at Jalan Alor (RM25–30/person). Hawker stalls genuinely outperform restaurants for authenticity!</div>
+  </div></div></div>
+</div>
+
+<!-- ═══════════════ BOOKINGS ═══════════════ -->
+<div class="page" id="pg-book">
+  <div class="sec-eye">Action Required</div><div class="sec-ttl">Book These Now</div>
+  <div class="alert aw"><span class="ai-ico">🚨</span><div class="ai-body"><div class="ai-ttl">Petronas Twin Towers sells out 2–3 weeks ahead — book IMMEDIATELY</div>This is the most time-critical booking. Visit petronastwintowers.com.my right now.</div></div>
+  <div class="bgrid">
+    <div class="bitem"><div class="bn">Petronas Twin Towers</div><div class="bw">petronastwintowers.com.my</div><div class="bno">⚠️ Book NOW. Sat Apr 11, 5 PM slot. CLOSED Mondays.</div></div>
+    <div class="bitem"><div class="bn">Aquaria KLCC</div><div class="bw">Klook.com</div><div class="bno">15% cheaper. Saves ~RM120 for 7 people.</div></div>
+    <div class="bitem"><div class="bn">KL Tower</div><div class="bw">kltower.com.my or Klook</div><div class="bno">Combo RM55. Book for 5 PM+ slot.</div></div>
+    <div class="bitem"><div class="bn">Genting Theme Park</div><div class="bw">rwgenting.com or Klook</div><div class="bno">RM145/child · RM180/adult. Group saves ~RM200.</div></div>
+    <div class="bitem"><div class="bn">KLIA Ekspres (both ways)</div><div class="bw">kliaekspres.com</div><div class="bno">RM55/adult · RM25/child. Return ticket.</div></div>
+    <div class="bitem"><div class="bn">Day-Use Hotel (Day 1)</div><div class="bw">dayuse.com or Agoda</div><div class="bno">Days Hotel Chan Sow Lin · Book Apr 11 morning.</div></div>
+    <div class="bitem"><div class="bn">AirAsia Check-in</div><div class="bw">airasia.com — opens Apr 1</div><div class="bno">14 days before = Apr 1. 7 seats together.</div></div>
+    <div class="bitem"><div class="bn">Touch 'n Go Cards</div><div class="bw">7-Eleven at KLIA2</div><div class="bno">RM10/card + RM50 top-up per person.</div></div>
+  </div>
+
+  <div class="sec-ttl" style="margin-top:22px;font-size:18px">Transport Reference</div>
+  <div class="card" style="cursor:default"><div class="card-body" style="display:block"><div class="cbi">
+    <table class="tbl"><tr><th>Route</th><th>Mode</th><th>Cost</th><th>Time</th></tr>
+    <tr><td>KLIA2 → KL Sentral</td><td>KLIA Ekspres</td><td>RM55/adult</td><td>28 min</td></tr>
+    <tr><td>KL Sentral → KLCC</td><td>MRT</td><td>RM3</td><td>12 min</td></tr>
+    <tr><td>Chan Sow Lin → KLCC</td><td>MRT</td><td>RM2.50</td><td>8 min</td></tr>
+    <tr><td>KL Sentral → Batu Caves</td><td>KTM Komuter</td><td>RM3</td><td>35 min</td></tr>
+    <tr><td>KL Sentral → Putrajaya</td><td>MRT</td><td>RM5</td><td>35 min</td></tr>
+    <tr><td>KL → Genting</td><td>Bus (Hentian Pudu)</td><td>RM10/pax</td><td>60 min</td></tr>
+    <tr><td>Any KL short hop</td><td>Grab (7 pax = 2 cars)</td><td>RM8–18</td><td>5–15 min</td></tr></table>
+  </div></div></div>
+
+  <div class="sec-ttl" style="margin-top:20px;font-size:18px">Key Contacts</div>
+  <div class="card" style="cursor:default"><div class="card-body" style="display:block"><div class="cbi">
+    <table class="tbl"><tr><th>Service</th><th>Number</th></tr>
+    <tr><td>Trion @ KL</td><td>+60 13-899 8999</td></tr>
+    <tr><td>Petronas Twin Towers</td><td>+60 3-2331 8080</td></tr>
+    <tr><td>Aquaria KLCC</td><td>+60 3-2333 1888</td></tr>
+    <tr><td>KL Tower</td><td>+60 3-2630 3033</td></tr>
+    <tr><td>Genting / Resorts World</td><td>+60 3-2718 1118</td></tr>
+    <tr><td>Dr. Locker KL Sentral</td><td>+60 10-270 0757</td></tr></table>
+  </div></div></div>
+</div>
+
+<script>
+// ── PAGE NAVIGATION ──
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById('pg-' + id).classList.add('on');
+  btn.classList.add('on');
+}
+
+// ── DAY NAVIGATION ──
+function showDay(idx, btn) {
+  document.querySelectorAll('.day-panel').forEach((p, i) => p.classList.toggle('on', i === idx));
+  document.querySelectorAll('.day-tab').forEach((t, i) => t.classList.toggle('on', i === idx));
+}
+
+// ── EXPAND/COLLAPSE STOP ──
+function toggleStop(stopEl) {
+  stopEl.classList.toggle('open');
+}
+
+// ── SKIP LOGIC ──
+// skipData maps connector IDs to skip info: {dist, mode, cost, note}
+const skipData = {
+  'conn_1_1_2': {dist:'KL Sentral → KLCC · 4.5 km', mode:'🚇 MRT', cost:'RM3/pax', note:'Skipping Little India. Continue directly to Aquaria KLCC.'},
+  'conn_1_2_3': {dist:'KLCC → KLCC Park · 0.1 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping Aquaria. Continue to KLCC Park and lunch.'},
+  'conn_1_3_4': {dist:'KLCC Park → Petronas Towers · 0.1 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping KLCC Park. Go directly to Petronas Towers.'},
+  'conn_1_4_5': {dist:'Hotel → Saloma Bridge · Grab ~2 km', mode:'🚗 Grab', cost:'~RM8', note:'Skipping Petronas Towers. Grab to Saloma Bridge area.'},
+  'conn_1_5_end': {dist:'KLCC → Chan Sow Lin · 8 min', mode:'🚇 MRT', cost:'RM2.50', note:'Skipping Saloma Bridge. MRT home.'},
+  'conn_2_1_2': {dist:'Pasar Seni → National Monument · 0.9 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping Mosque. Walk to National Monument.'},
+  'conn_2_2_3': {dist:'Mosque area → Merdeka Square · 1.8 km', mode:'🚶 Walk / Grab', cost:'~RM6', note:'Skipping National Monument. Head to Merdeka Square.'},
+  'conn_2_3_4': {dist:'Merdeka Square → Islamic Arts Museum · 0.7 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping Merdeka Square. Walk to Islamic Arts Museum.'},
+  'conn_2_4_5': {dist:'Museum → Central Market · 0.8 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping Islamic Arts Museum. Walk to Central Market.'},
+  'conn_2_5_6': {dist:'Central Market → Kwai Chai Hong · 0.3 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping Central Market. Walk to Kwai Chai Hong alley.'},
+  'conn_2_6_7': {dist:'Central Market → Petaling Street · 0.4 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping Kwai Chai Hong. Continue to Petaling Street.'},
+  'conn_2_7_8': {dist:'Chinatown → Durian stalls · 0.2 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping Chinatown/Petaling St. Go to durian stalls.'},
+  'conn_2_8_9': {dist:'Petaling area → Jalan Alor · 1.4 km', mode:'🚗 Grab', cost:'~RM8', note:'Skipping Durian. Grab to Jalan Alor for dinner.'},
+  'conn_3_1_2': {dist:'Batu Caves → Geneve Watch · 0.8 km', mode:'🚗 Grab', cost:'~RM6', note:'Skipping Batu Caves. Head to Geneve Watch or Thean Hou.'},
+  'conn_3_2_3': {dist:'Batu Caves → Thean Hou Temple · 14 km', mode:'🚗 Grab', cost:'~RM18', note:'Skipping Geneve Watch. Grab directly to Thean Hou Temple.'},
+  'conn_3_3_4': {dist:'Thean Hou → Chocolate Factory · 6 km', mode:'🚗 Grab', cost:'~RM12', note:'Skipping Thean Hou Temple. Grab to Chocolate Factory.'},
+  'conn_3_4_5': {dist:'Bukit Bintang area → KL Tower · 2.5 km', mode:'🚗 Grab', cost:'~RM10', note:'Skipping Chocolate Factory. Head to KL Tower for sunset.'},
+  'conn_3_5_6': {dist:'KL Tower → Pavilion KL · 1.2 km', mode:'🚶 Walk', cost:'FREE', note:'Skipping KL Tower. Walk to Pavilion Bukit Bintang.'},
+  'conn_4_1_2': {dist:'Genting → Chin Swee · 3 km cable car', mode:'🚡 SkyWay', cost:'FREE stop', note:'Skipping Genting Theme Park. Take SkyWay to Chin Swee only.'},
+  'conn_5_1_2': {dist:'Hotel → Putrajaya via KL Sentral · ~45 min', mode:'🚇 MRT', cost:'RM17', note:'Skipping Istana Negara. Head straight to Putrajaya.'},
+  'conn_5_2_3': {dist:'Iron Mosque → Botanical Gardens · 4 km', mode:'🚗 Grab', cost:'~RM10', note:'Skipping Iron Mosque. Grab to Taman Botani.'},
+  'conn_5_3_4': {dist:'Putrajaya → KL Sentral · 30 km', mode:'🚇 MRT', cost:'RM5', note:'Skipping Botanical Gardens. MRT back to KL.'},
+};
+
+function skipStop(btn, stopId, connId) {
+  const stop = document.getElementById(stopId);
+  const isSkipped = stop.classList.contains('skipped');
+
+  if (isSkipped) {
+    // Unskip
+    stop.classList.remove('skipped');
+    btn.textContent = 'Skip';
+    btn.className = 'act-btn btn-skip';
+    btn.setAttribute('onclick', `skipStop(this,'${stopId}','${connId}')`);
+    // Hide skip notice
+    const notice = document.getElementById('notice_' + stopId);
+    if (notice) { notice.classList.remove('show'); }
+    // Restore connector
+    if (connId) {
+      const conn = document.getElementById(connId);
+      if (conn) conn.classList.remove('skipped-connector');
+    }
+  } else {
+    // Skip
+    stop.classList.add('skipped');
+    btn.textContent = '↩ Undo Skip';
+    btn.className = 'act-btn btn-unskip';
+    btn.setAttribute('onclick', `skipStop(this,'${stopId}','${connId}')`);
+    // Show skip notice with updated connector
+    let noticeEl = document.getElementById('notice_' + stopId);
+    if (!noticeEl) {
+      noticeEl = document.createElement('div');
+      noticeEl.className = 'skip-notice';
+      noticeEl.id = 'notice_' + stopId;
+      stop.insertAdjacentElement('afterend', noticeEl);
+    }
+    const d = skipData[connId] || {};
+    noticeEl.innerHTML = `<b>⏭️ Stop skipped.</b> ${d.note || ''}<br>Next transport: <b>${d.mode || ''}</b> · ${d.dist || ''} · <b>${d.cost || ''}</b>`;
+    noticeEl.classList.add('show');
+    // Dim connector
+    if (connId) {
+      const conn = document.getElementById(connId);
+      if (conn) conn.classList.add('skipped-connector');
+    }
+  }
+}
+</script>
+</body>
+</html>
